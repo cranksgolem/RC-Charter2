@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RC Charter2", "RC Charter2\RC Charter2.csproj", "{35ED8D2A-9576-4E5B-8D12-A3E96442EEE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RC_Charter2WPF", "RC_Charter2WPF\RC_Charter2WPF.csproj", "{37171F65-8BD9-424F-969B-C7B7EDBD9648}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35ED8D2A-9576-4E5B-8D12-A3E96442EEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35ED8D2A-9576-4E5B-8D12-A3E96442EEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35ED8D2A-9576-4E5B-8D12-A3E96442EEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35ED8D2A-9576-4E5B-8D12-A3E96442EEE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37171F65-8BD9-424F-969B-C7B7EDBD9648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37171F65-8BD9-424F-969B-C7B7EDBD9648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37171F65-8BD9-424F-969B-C7B7EDBD9648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37171F65-8BD9-424F-969B-C7B7EDBD9648}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94837C3F-E057-4DF1-953C-C9185CDDB420}
+	EndGlobalSection
+EndGlobal
