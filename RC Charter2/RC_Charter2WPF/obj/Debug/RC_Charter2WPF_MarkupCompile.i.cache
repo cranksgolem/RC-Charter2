@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\School\5th Year\DBMS\FINAL PROJECT\RC Charter2\RC_Charter2WPF\obj\Debug\
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\
 RC_Charter2WPF
 none
 false
 DEBUG;TRACE
-D:\School\5th Year\DBMS\FINAL PROJECT\RC Charter2\RC_Charter2WPF\App.xaml
-5878420551
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\App.xaml
+61204403290
 
-14-223478390
-71-160051102
-MainWindow.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\Parts\CustomerList.xaml;Views\Parts\NavBar.xaml;
+161834968788
+73587267613
+MainWindow.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\Parts\CharterTripList.xaml;Views\Parts\CustomerList.xaml;Views\Parts\NavBar.xaml;
 
-False
+True
 

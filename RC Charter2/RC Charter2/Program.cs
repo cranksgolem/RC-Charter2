@@ -14,15 +14,5 @@ namespace RC_Charter2
 		{
 		}
 
-		public void TestAddCharterTrip()
-		{
-			using (var uw = new CharterTripUnitOfWork())
-			{
-				var newCharterTrip = new CharterTrip();
-
-				var aircraftToAssign = uw.AircraftRepository.Get(c => c.AircraftNumber == 1);
-			}
-
-		}
 	}
 }

@@ -14,83 +14,86 @@ namespace RC_Charter2.UnitsOfWork
 	public class CharterTripUnitOfWork : IDisposable
 	{
 		private RC_Charter2Context _context;
-		private IRepository<CharterTrip> CharterTripRepository { get; set; }
-		private IRepository<Flight> FlightRepository { get; set; }
-		private IRepository<Aircraft> AircraftRepository { get; set; }
-		private IRepository<CrewAssignment> CrewAssignmentRepository { get; set; }
-		private IRepository<Employee> EmployeeRepository { get; set; }
-		private IRepository<CharterFlightCharge> CharterFlightChargeRepository { get; set; }
-		private IRepository<BalanceHistory> BalanceHistoryRepository { get; set; }
+		private IRepository<CharterTrip> _charterTripRepository { get; set; }
+		private IRepository<Flight> _flightRepository { get; set; }
+		private IRepository<Aircraft> _aircraftRepository { get; set; }
+		private IRepository<CrewAssignment> _crewAssignmentRepository { get; set; }
+		private IRepository<Employee> _employeeRepository { get; set; }
+		private IRepository<CharterFlightCharge> _charterFlightChargeRepository { get; set; }
+		private IRepository<BalanceHistory> _balanceHistoryRepository { get; set; }
+		private IRepository<Customer> _customerRepository { get; set; }
 
-		public CharterTripUnitOfWork(IRepository<BalanceHistory> balanceHistoryRepository, IRepository<CharterTrip> charterTripRepository, IRepository<Flight> flightRepository, IRepository<Aircraft> aircraftRepository, IRepository<CrewAssignment> crewAssignmentRepository, IRepository<Employee> employeeRepository, IRepository<CharterFlightCharge> charterFlightChargeRepository)
+		public CharterTripUnitOfWork(IRepository<Customer> customerRepository ,IRepository<BalanceHistory> balanceHistoryRepository, IRepository<CharterTrip> charterTripRepository, IRepository<Flight> flightRepository, IRepository<Aircraft> aircraftRepository, IRepository<CrewAssignment> crewAssignmentRepository, IRepository<Employee> employeeRepository, IRepository<CharterFlightCharge> charterFlightChargeRepository)
 		{
-			CharterTripRepository = charterTripRepository;
-			FlightRepository = flightRepository;
-			AircraftRepository = aircraftRepository;
-			CrewAssignmentRepository = crewAssignmentRepository;
-			EmployeeRepository = employeeRepository;
-			CharterFlightChargeRepository = charterFlightChargeRepository;
-			BalanceHistoryRepository = balanceHistoryRepository;
+			_charterTripRepository = charterTripRepository;
+			_flightRepository = flightRepository;
+			_aircraftRepository = aircraftRepository;
+			_crewAssignmentRepository = crewAssignmentRepository;
+			_employeeRepository = employeeRepository;
+			_charterFlightChargeRepository = charterFlightChargeRepository;
+			_balanceHistoryRepository = balanceHistoryRepository;
+			_customerRepository = customerRepository;
 		}
 
 		public CharterTripUnitOfWork()
 		{
 			_context = new RC_Charter2Context();
-			CharterTripRepository = new EfRepository<CharterTrip>(_context);
-			FlightRepository = new EfRepository<Flight>(_context);
-			AircraftRepository = new EfRepository<Aircraft>(_context);
-			CrewAssignmentRepository = new EfRepository<CrewAssignment>(_context);
-			EmployeeRepository = new EfRepository<Employee>(_context);
-			CharterFlightChargeRepository = new EfRepository<CharterFlightCharge>(_context);
-			BalanceHistoryRepository = new EfRepository<BalanceHistory>(_context);
+			_charterTripRepository = new EfRepository<CharterTrip>(_context);
+			_flightRepository = new EfRepository<Flight>(_context);
+			_aircraftRepository = new EfRepository<Aircraft>(_context);
+			_crewAssignmentRepository = new EfRepository<CrewAssignment>(_context);
+			_employeeRepository = new EfRepository<Employee>(_context);
+			_charterFlightChargeRepository = new EfRepository<CharterFlightCharge>(_context);
+			_balanceHistoryRepository = new EfRepository<BalanceHistory>(_context);
+			_customerRepository = new EfRepository<Customer>(_context);
 		}
 
 		public void AddCharterTrip(CharterTrip charterTrip, Aircraft aircraft, Customer customer)
 		{
 			charterTrip.AircraftNumber = aircraft.AircraftNumber;
 			charterTrip.CustomerId = customer.CustomerId;
-			CharterTripRepository.Add(charterTrip);
-			CharterTripRepository.SaveChanges();
+			_charterTripRepository.Add(charterTrip);
+			_charterTripRepository.SaveChanges();
 		}
 
 		public void AddFlightToCharterTrip(Flight flight, CharterTrip charterTrip)
 		{
 			flight.CharterTripId = charterTrip.CharterTripId;
-			FlightRepository.Add(flight);
-			FlightRepository.SaveChanges();
+			_flightRepository.Add(flight);
+			_flightRepository.SaveChanges();
 		}
 
 		public void AddCrewMember(CrewAssignment crewAssignment, Employee employee, CharterTrip charterTrip)
 		{
 			crewAssignment.EmployeeId = employee.EmployeeId;
 			crewAssignment.CharterTripId = charterTrip.CharterTripId;
-			CrewAssignmentRepository.Add(crewAssignment);
-			CrewAssignmentRepository.SaveChanges();
+			_crewAssignmentRepository.Add(crewAssignment);
+			_crewAssignmentRepository.SaveChanges();
 		}
 
 		public void AddCharterFlightCharge(CharterFlightCharge charterFlightCharge, CharterTrip charterTrip)
 		{
 			charterFlightCharge.CharterTripId = charterTrip.CharterTripId;
-			CharterFlightChargeRepository.Add(charterFlightCharge);
-			CharterFlightChargeRepository.SaveChanges();
+			_charterFlightChargeRepository.Add(charterFlightCharge);
+			_charterFlightChargeRepository.SaveChanges();
 		}
 
 		public void AddBalanceHistory(BalanceHistory balanceHistory, CharterTrip charterTrip)
 		{
 			balanceHistory.CharterTripId = charterTrip.CharterTripId;
-			BalanceHistoryRepository.Add(balanceHistory);
-			BalanceHistoryRepository.SaveChanges();
+			_balanceHistoryRepository.Add(balanceHistory);
+			_balanceHistoryRepository.SaveChanges();
 		}
 
 		public void UpdateCharterTrip(CharterTrip charterTrip)
 		{
-			CharterTripRepository.Update(charterTrip);
-			CharterTripRepository.SaveChanges();
+			_charterTripRepository.Update(charterTrip);
+			_charterTripRepository.SaveChanges();
 		}
 
 		public async Task<IEnumerable<CharterTrip>> GetCharterTrips(Expression<Func<CharterTrip, bool>> query)
 		{
-			return await CharterTripRepository.Query()
+			return await _charterTripRepository.Query()
 				.Where(query)
 				.ToListAsync()
 				.ConfigureAwait(false);
@@ -103,22 +106,40 @@ namespace RC_Charter2.UnitsOfWork
 
 		public IEnumerable<Flight> GetFlights(Expression<Func<Flight, bool>> query)
 		{
-			return FlightRepository.GetRange(query);
+			return _flightRepository.GetRange(query);
 		}
 
 		public IEnumerable<CharterFlightCharge> GetCharterFlightCharges(Expression<Func<CharterFlightCharge, bool>> query)
 		{
-			return CharterFlightChargeRepository.GetRange(query);
+			return _charterFlightChargeRepository.GetRange(query);
 		}
 
 		public IEnumerable<BalanceHistory> GetBalanceHistories(Expression<Func<BalanceHistory, bool>> query)
 		{
-			return BalanceHistoryRepository.GetRange(query);
+			return _balanceHistoryRepository.GetRange(query);
 		}
 
 		public IEnumerable<CrewAssignment> GetCrewAssignments(Expression<Func<CrewAssignment, bool>> query)
 		{
-			return CrewAssignmentRepository.GetRange(query);
+			return _crewAssignmentRepository.GetRange(query);
+		}
+
+		public int GetCustomerCount()
+		{
+			return _customerRepository.Query().Count();
+		}
+
+		public IEnumerable<Customer> GetCustomersByPage(int itemPerPage, int page)
+		{
+			return _customerRepository.Query()
+				.Skip(itemPerPage * (page - 1))
+				.Take(itemPerPage)
+				.ToList();
+		}
+
+		public IEnumerable<Customer> GetAllCustomers()
+		{
+			return _customerRepository.GetRange(c => true);
 		}
 
 		private bool _isDisposing;
