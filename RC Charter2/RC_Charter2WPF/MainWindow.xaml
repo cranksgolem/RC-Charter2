@@ -6,11 +6,15 @@
 	xmlns:local="clr-namespace:RC_Charter2WPF"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:parts="clr-namespace:RC_Charter2WPF.Views.Parts"
+	xmlns:viewModels="clr-namespace:RC_Charter2WPF.ViewModels"
 	xmlns:views="clr-namespace:RC_Charter2WPF.Views"
 	Title="MainWindow"
 	Width="800"
 	Height="450"
 	mc:Ignorable="d">
+	<Window.Resources>
+		<viewModels:CustomerViewModel x:Key="CustomerViewModel" />
+	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
@@ -20,8 +24,16 @@
 			<parts:NavBar />
 		</Grid>
 		<Grid Grid.Row="1">
-			<views:CustomerView x:Name="CustomerView" />
+			<views:CustomerView x:Name="CustomerView" DataContext="{StaticResource CustomerViewModel}" />
 			<views:EmployeeView x:Name="EmployeeView" Visibility="Collapsed" />
+			<views:AddCustomerView
+				x:Name="AddCustomerView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="Collapsed" />
+			<views:FlightLegsView
+				x:Name="FlightLegsView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="Collapsed" />
 		</Grid>
 	</Grid>
 </Window>

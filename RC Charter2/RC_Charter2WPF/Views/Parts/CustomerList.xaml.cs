@@ -24,5 +24,34 @@ namespace RC_Charter2WPF.Views.Parts
         {
             InitializeComponent();
         }
-    }
+
+		private void BtnAddCustomer_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Visible;
+			}
+		}
+
+		private void LbxCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				if (LbxCustomers.SelectedItem != null)
+				{
+					(parentWindow as MainWindow).CustomerView.CharterTripList.Visibility = Visibility.Visible;
+					(parentWindow as MainWindow).CustomerView.CharterTripDetails.Visibility = Visibility.Visible;
+				}
+				else
+				{
+					(parentWindow as MainWindow).CustomerView.CharterTripList.Visibility = Visibility.Collapsed;
+					(parentWindow as MainWindow).CustomerView.CharterTripDetails.Visibility = Visibility.Collapsed;
+				}
+			}
+		}
+	}
 }

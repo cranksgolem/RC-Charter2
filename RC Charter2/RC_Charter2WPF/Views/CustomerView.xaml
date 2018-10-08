@@ -10,16 +10,27 @@
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	mc:Ignorable="d">
-	<UserControl.Resources>
-		<viewModels:CustomerViewModel x:Key="CustomerViewModel" />
-	</UserControl.Resources>
-	<Grid DataContext="{StaticResource CustomerViewModel}">
+	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="1*" />
 			<ColumnDefinition Width="3*" />
 		</Grid.ColumnDefinitions>
 		<Grid Grid.Column="0">
-			<parts:CustomerList />
+			<parts:CustomerList x:Name="CustomerList" />
+		</Grid>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<parts:CharterTripList
+				x:Name="CharterTripList"
+				Grid.Row="0"
+				Visibility="Collapsed" />
+			<parts:CharterTripDetails
+				x:Name="CharterTripDetails"
+				Grid.Row="1"
+				Visibility="Collapsed" />
 		</Grid>
 	</Grid>
 </UserControl>

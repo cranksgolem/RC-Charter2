@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\App.xaml
-5878420551
+10916389033
 
-111143156658
+16392840728
 73587267613
-MainWindow.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\Parts\CustomerList.xaml;Views\Parts\NavBar.xaml;
+MainWindow.xaml;Views\AddCustomerView.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\FlightLegsView.xaml;Views\Parts\CharterTripDetails.xaml;Views\Parts\CharterTripList.xaml;Views\Parts\CustomerList.xaml;Views\Parts\FlightLegsList.xaml;Views\Parts\NavBar.xaml;
 
 False
 

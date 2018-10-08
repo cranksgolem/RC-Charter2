@@ -24,8 +24,11 @@ namespace RC_Charter2WPF.ViewModels
 	    private ListCollectionView _customerListView;
 	    public ObservableCollection<Customer> CustomerList { get; } = new ObservableCollection<Customer>();
 		public ObservableCollection<CharterTrip> CharterTripList { get; } = new ObservableCollection<CharterTrip>();
+		public ObservableCollection<Flight> FlightList { get; } = new ObservableCollection<Flight>();
 	    private ListCollectionView _charterTripListView;
 	    private CharterTrip _selectedCharterTrip;
+	    private Flight _selectedFlight;
+	    private string _selectedCustomerNameHeader;
 
 	    public CustomerViewModel(CharterTripUnitOfWork ctUow)
 	    {
@@ -60,13 +63,37 @@ namespace RC_Charter2WPF.ViewModels
 		    LoadCustomers(1);
 	    }
 
-	    private async Task LoadCharterTrips()
+	    private void LoadCharterTrips()
 	    {
-			CharterTripList.Clear();
-		    var charterTrips =(await _ctUow.GetCharterTrips(c => c.CustomerId == SelectedCustomer.CustomerId)).ToList();
-		    foreach (var charterTrip in charterTrips)
+		    if (SelectedCustomer != null)
 		    {
-			    CharterTripList.Add(charterTrip);
+			    CharterTripList.Clear();
+			    var charterTrips = _ctUow.GetCharterTrips(c => c.CustomerId == SelectedCustomer.CustomerId);
+			    foreach (var charterTrip in charterTrips)
+			    {
+				    CharterTripList.Add(charterTrip);
+			    }
+		    }
+		    else
+		    {
+			    CharterTripList.Clear();
+		    }
+	    }
+
+	    private void LoadFlightLegs()
+	    {
+		    if (SelectedCharterTrip != null)
+		    {
+				FlightList.Clear();
+			    var flightLegs = _ctUow.GetFlights(c => c.CharterTripId == SelectedCharterTrip.CharterTripId);
+			    foreach (var flightLeg in flightLegs)
+			    {
+				    FlightList.Add(flightLeg);
+			    }
+			}
+		    else
+		    {
+				FlightList.Clear();
 		    }
 	    }
 
@@ -120,6 +147,20 @@ namespace RC_Charter2WPF.ViewModels
 
 	    public ICommand NextPageCommand => new RelayCommand(NextPageProc, NextPageCondition);
 	    public ICommand PrevPageCommand => new RelayCommand(PrevPageProc, PrevPageCondition);
+		public ICommand AddCustomerCommand => new RelayCommand(AddNewCustomer, true);
+		public ICommand ViewFlightLegsCommand => new RelayCommand(LoadFlightLegs, true);
+
+	    private void AddNewCustomer()
+	    {
+			var newCustomer = new Customer();
+		    newCustomer.Name = NewCustomerName;
+		    newCustomer.Address = NewCustomerAddress;
+		    newCustomer.AvailableCredits = NewCustomerAvailableCredits;
+			_ctUow.AddCustomer(newCustomer);
+		    NewCustomerName = "";
+		    NewCustomerAddress = "";
+		    NewCustomerAvailableCredits = null;
+	    }
 
 	    private void NextPageProc()
 	    {
@@ -141,6 +182,22 @@ namespace RC_Charter2WPF.ViewModels
 		    SelectedPage--;
 	    }
 
+	    private void SetSelectedCustomerNameHeader(Customer customer)
+	    {
+		    if (SelectedCustomer != null)
+		    {
+			    var customerNameLastChar = customer.Name.Last();
+			    if (customerNameLastChar != 's')
+			    {
+				    SelectedCustomerNameHeader = customer.Name + "'s";
+			    }
+			    else
+			    {
+				    SelectedCustomerNameHeader = customer.Name + "'";
+			    }
+		    }
+	    }
+
 		public Customer SelectedCustomer
 	    {
 		    get => _selectedCustomer;
@@ -148,6 +205,18 @@ namespace RC_Charter2WPF.ViewModels
 		    {
 			    _selectedCustomer = value;
 				RaisePropertyChanged(nameof(SelectedCustomer));
+				SetSelectedCustomerNameHeader(value);
+			    LoadCharterTrips();
+			}
+	    }
+
+	    public Flight SelectedFlight
+	    {
+		    get => _selectedFlight;
+		    set
+		    {
+			    _selectedFlight = value;
+				RaisePropertyChanged(nameof(SelectedFlight));
 		    }
 	    }
 
@@ -158,7 +227,16 @@ namespace RC_Charter2WPF.ViewModels
 		    {
 			    _selectedCharterTrip = value;
 				RaisePropertyChanged(nameof(SelectedCharterTrip));
-			    LoadCharterTrips();
+		    }
+	    }
+
+	    public string SelectedCustomerNameHeader
+	    {
+		    get => _selectedCustomerNameHeader;
+		    set
+		    {
+			    _selectedCustomerNameHeader = value;
+				RaisePropertyChanged(nameof(SelectedCustomerNameHeader));
 		    }
 	    }
 
@@ -171,5 +249,9 @@ namespace RC_Charter2WPF.ViewModels
 			    FilterCustomerList(value);
 		    }
 	    }
+
+		public string NewCustomerName { get; set; }
+	    public string NewCustomerAddress { get; set; }
+	    public decimal? NewCustomerAvailableCredits { get; set; }
 	}
 }

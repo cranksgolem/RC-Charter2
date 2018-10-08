@@ -56,6 +56,12 @@ namespace RC_Charter2.UnitsOfWork
 			_charterTripRepository.SaveChanges();
 		}
 
+		public void AddCustomer(Customer customer)
+		{
+			_customerRepository.Add(customer);
+			_customerRepository.SaveChanges();
+		}
+
 		public void AddFlightToCharterTrip(Flight flight, CharterTrip charterTrip)
 		{
 			flight.CharterTripId = charterTrip.CharterTripId;
@@ -91,17 +97,15 @@ namespace RC_Charter2.UnitsOfWork
 			_charterTripRepository.SaveChanges();
 		}
 
-		public async Task<IEnumerable<CharterTrip>> GetCharterTrips(Expression<Func<CharterTrip, bool>> query)
+		public IEnumerable<CharterTrip> GetCharterTrips(Expression<Func<CharterTrip, bool>> query)
 		{
-			return await _charterTripRepository.Query()
-				.Where(query)
-				.ToListAsync()
-				.ConfigureAwait(false);
+			return _charterTripRepository.GetRange(query);
+
 		}
 
-		public async Task<IEnumerable<CharterTrip>> GetAllCharterTrips()
+		public IEnumerable<CharterTrip> GetAllCharterTrips()
 		{
-			return await GetCharterTrips(c => true).ConfigureAwait(false);
+			return GetCharterTrips(c => true);
 		}
 
 		public IEnumerable<Flight> GetFlights(Expression<Func<Flight, bool>> query)

@@ -13,31 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RC_Charter2WPF.Views.Parts
+namespace RC_Charter2WPF.Views
 {
     /// <summary>
-    /// Interaction logic for CharterTripList.xaml
+    /// Interaction logic for FlightLegsView.xaml
     /// </summary>
-    public partial class CharterTripList : UserControl
+    public partial class FlightLegsView : UserControl
     {
-        public CharterTripList()
+        public FlightLegsView()
         {
             InitializeComponent();
         }
 
-		private void LbCharterTrips_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void BtnBack_Click(object sender, RoutedEventArgs e)
 		{
 			Window parentWindow = Application.Current.MainWindow;
 			if (parentWindow.GetType() == typeof(MainWindow))
 			{
-				if (LbCharterTrips.SelectedItem != null)
-				{
-					(parentWindow as MainWindow).CustomerView.CharterTripDetails.GridCharterTripDetails.Visibility = Visibility.Visible;
-				}
-				else
-				{
-					(parentWindow as MainWindow).CustomerView.CharterTripDetails.GridCharterTripDetails.Visibility = Visibility.Collapsed;
-				}
+				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
+				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
 			}
 		}
 	}

@@ -15,19 +15,34 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 			<TextBox
+				x:Name="TbxCustomerSearch"
+				Grid.Column="0"
 				MaxHeight="38"
 				Margin="4"
 				Padding="4"
 				Text="{Binding Path=CustomerSearchText, UpdateSourceTrigger=PropertyChanged, Delay=300}" />
+
+			<Button
+				x:Name="BtnAddCustomer"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				Click="BtnAddCustomer_Click"
+				Content="Add" />
 		</Grid>
 		<ListBox
+			x:Name="LbxCustomers"
 			Grid.Row="1"
 			MinWidth="150"
 			Margin="4,0,4,4"
 			Padding="4"
 			ItemsSource="{Binding Path=CustomerList}"
-			SelectedItem="{Binding Path=SelectedCustomer}">
+			SelectedItem="{Binding Path=SelectedCustomer}" SelectionChanged="LbxCustomers_SelectionChanged">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock Padding="0,3" Text="{Binding Path=Name}" />

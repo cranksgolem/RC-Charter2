@@ -104,3 +104,13 @@ D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2
 D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\RC_Charter2WPF.csproj.CoreCompileInputs.cache
 D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\RC_Charter2WPF.csproj.CopyComplete
 D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\bin\Debug\System.ComponentModel.Annotations.dll
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\Parts\CharterTripList.g.cs
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\Parts\CharterTripList.baml
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\AddCustomerView.g.cs
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\AddCustomerView.baml
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\Parts\CharterTripDetails.g.cs
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\Parts\CharterTripDetails.baml
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\FlightLegsView.g.cs
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\FlightLegsView.baml
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\Parts\FlightLegsList.g.cs
+D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\obj\Debug\Views\Parts\FlightLegsList.baml

@@ -13,31 +13,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RC_Charter2WPF.Views.Parts
+namespace RC_Charter2WPF.Views
 {
-    /// <summary>
-    /// Interaction logic for NavBar.xaml
-    /// </summary>
-    public partial class NavBar : UserControl
-    {
-        public NavBar()
-        {
-            InitializeComponent();
-        }
+	/// <summary>
+	/// Interaction logic for AddCustomerView.xaml
+	/// </summary>
+	public partial class AddCustomerView : UserControl
+	{
+		public AddCustomerView()
+		{
+			InitializeComponent();
+		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void BtnCancelAddCustomer_Click(object sender, RoutedEventArgs e)
 		{
 			Window parentWindow = Application.Current.MainWindow;
 			if (parentWindow.GetType() == typeof(MainWindow))
 			{
-				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Visible;
-				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
 				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Collapsed;
 			}
 		}
 
-		private void BtnCustomerView_Click(object sender, RoutedEventArgs e)
+		private void BtnConfirmAddCustomer_Click(object sender, RoutedEventArgs e)
 		{
+			TbxNewCustomerName.Text = "";
+			TbxNewCustomerAddress.Text = "";
+			TbxNewCustomerAvailableCredits.Text = "";
+
 			Window parentWindow = Application.Current.MainWindow;
 			if (parentWindow.GetType() == typeof(MainWindow))
 			{
