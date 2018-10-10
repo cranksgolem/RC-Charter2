@@ -24,15 +24,5 @@ namespace RC_Charter2WPF.Views
         {
             InitializeComponent();
         }
-
-		private void BtnBack_Click(object sender, RoutedEventArgs e)
-		{
-			Window parentWindow = Application.Current.MainWindow;
-			if (parentWindow.GetType() == typeof(MainWindow))
-			{
-				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
-				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
-			}
-		}
 	}
 }

@@ -62,6 +62,12 @@ namespace RC_Charter2.UnitsOfWork
 			_customerRepository.SaveChanges();
 		}
 
+		public void DeleteCustomer(Customer customer)
+		{
+			_customerRepository.Remove(customer);
+			_customerRepository.SaveChanges();
+		}
+
 		public void AddFlightToCharterTrip(Flight flight, CharterTrip charterTrip)
 		{
 			flight.CharterTripId = charterTrip.CharterTripId;
@@ -95,6 +101,12 @@ namespace RC_Charter2.UnitsOfWork
 		{
 			_charterTripRepository.Update(charterTrip);
 			_charterTripRepository.SaveChanges();
+		}
+
+		public void UpdateCustomer(Customer customer)
+		{
+			_customerRepository.Update(customer);
+			_customerRepository.SaveChanges();
 		}
 
 		public IEnumerable<CharterTrip> GetCharterTrips(Expression<Func<CharterTrip, bool>> query)

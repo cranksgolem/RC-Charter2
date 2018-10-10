@@ -38,10 +38,17 @@ namespace RC_Charter2WPF.Views
 
 		private void BtnConfirmAddCustomer_Click(object sender, RoutedEventArgs e)
 		{
-			TbxNewCustomerName.Text = "";
-			TbxNewCustomerAddress.Text = "";
-			TbxNewCustomerAvailableCredits.Text = "";
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
+				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Collapsed;
+			}
+		}
 
+		private void BtnConfirmEditCustomer_Click(object sender, RoutedEventArgs e)
+		{
 			Window parentWindow = Application.Current.MainWindow;
 			if (parentWindow.GetType() == typeof(MainWindow))
 			{

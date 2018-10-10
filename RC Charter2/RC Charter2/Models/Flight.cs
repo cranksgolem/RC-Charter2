@@ -18,6 +18,7 @@ namespace RC_Charter2.Models
 		public float? DistanceFlown { get; set; }
 		public int? WaitingTime { get; set; }
 		public float? FuelUsage { get; set; }
+		public int? Order { get; set; }
 
 		public CharterTrip CharterTrip { get; set; }
 	}

@@ -294,6 +294,8 @@ namespace RC_Charter2.Models
 
 				entity.Property(e => e.WaitingTime).IsRequired(false);
 
+				entity.Property(e => e.Order).IsRequired(false);
+
 				entity.Property(e => e.FuelUsage).HasColumnType("float").IsRequired(false);
 
 				entity.HasOne(d => d.CharterTrip)

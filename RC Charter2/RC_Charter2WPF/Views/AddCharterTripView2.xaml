@@ -1,0 +1,75 @@
+﻿<UserControl
+	x:Class="RC_Charter2WPF.Views.AddCharterTripView2"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:RC_Charter2WPF.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:parts="clr-namespace:RC_Charter2WPF.Views.Parts"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	mc:Ignorable="d">
+	<Grid>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid Grid.Row="0">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock
+						Margin="4,4,0,4"
+						Padding="4,4,0,4"
+						FontSize="30"
+						Text="Add Charter Trip for " />
+					<TextBlock
+						Margin="0,4,4,4"
+						Padding="0,4,4,4"
+						DataContext="{Binding Path=SelectedCustomer}"
+						FontSize="30"
+						Text="{Binding Path=Name}" />
+				</StackPanel>
+			</Grid>
+			<Grid Grid.Row="1">
+				<parts:RequiredCrewList />
+			</Grid>
+			<Grid Grid.Row="2">
+				<parts:EmployeesToBeAssignedList />
+			</Grid>
+			<Grid Grid.Row="3">
+				<parts:EmployeeList />
+			</Grid>
+			<Grid Grid.Row="4">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Button
+					x:Name="BtnBack"
+					Grid.Column="0"
+					Margin="4"
+					Padding="4"
+					HorizontalAlignment="Left"
+					Click="BtnBack_Click"
+					Content="Back" />
+				<Button
+					Grid.Column="1"
+					Margin="4"
+					Padding="4"
+					HorizontalAlignment="Right"
+					Content="Complete" />
+				<Button
+					x:Name="BtnConfirmEditCustomer"
+					Grid.Column="1"
+					Margin="4"
+					Padding="4"
+					HorizontalAlignment="Right"
+					Content="Save"
+					Visibility="Collapsed" />
+			</Grid>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -24,5 +24,21 @@ namespace RC_Charter2WPF.Views.Parts
         {
             InitializeComponent();
         }
-    }
+
+		private void LbFlightLegs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				if (LbFlightLegs.SelectedItem != null)
+				{
+					(parentWindow as MainWindow).FlightLegsView.GridFlightLegDetails.GridFlightLegDetails.Visibility = Visibility.Visible;
+				}
+				else
+				{
+					(parentWindow as MainWindow).FlightLegsView.GridFlightLegDetails.GridFlightLegDetails.Visibility = Visibility.Collapsed;
+				}
+			}
+		}
+	}
 }

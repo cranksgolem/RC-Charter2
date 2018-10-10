@@ -142,6 +142,10 @@
     <Compile Include="Migrations\20181004084048_v4.designer.cs">
       <DependentUpon>20181004084048_v4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20181009032237_v5.cs" />
+    <Compile Include="Migrations\20181009032237_v5.designer.cs">
+      <DependentUpon>20181009032237_v5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RC_Charter2ContextModelSnapshot.cs" />
     <Compile Include="Models\Aircraft.cs" />
     <Compile Include="Models\AircraftProperties.cs" />
@@ -154,6 +158,7 @@
     <Compile Include="Models\CrewRequirement.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeToBeAssigned.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\License.cs" />
     <Compile Include="Models\Licensure.cs" />

@@ -170,12 +170,15 @@
 				Padding="4"
 				Click="BtnViewFlightLegs_Click"
 				Command="{Binding Path=ViewFlightLegsCommand}"
-				Content="View Flight Legs" />
+				Content="View Flight Legs"
+				Visibility="Collapsed" />
 			<Button
+				x:Name="BtnViewPaymentHistory"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				Content="View Payment History" />
+				Content="View Payment History"
+				Visibility="Collapsed" />
 		</Grid>
 	</Grid>
 </UserControl>

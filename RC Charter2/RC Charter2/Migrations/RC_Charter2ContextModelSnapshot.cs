@@ -305,6 +305,8 @@ namespace RC_Charter2.Migrations
                     b.Property<double?>("FuelUsage")
                         .HasColumnType("float");
 
+                    b.Property<int?>("Order");
+
                     b.Property<string>("Origin");
 
                     b.Property<DateTime?>("TimeArrival");

@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:RC_Charter2WPF"
+	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:parts="clr-namespace:RC_Charter2WPF.Views.Parts"
 	xmlns:viewModels="clr-namespace:RC_Charter2WPF.ViewModels"
@@ -11,6 +12,13 @@
 	Title="MainWindow"
 	Width="800"
 	Height="450"
+	Background="{DynamicResource MaterialDesignPaper}"
+	FontFamily="{DynamicResource MaterialDesignFont}"
+	TextElement.FontSize="13"
+	TextElement.FontWeight="Regular"
+	TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+	TextOptions.TextFormattingMode="Ideal"
+	TextOptions.TextRenderingMode="Auto"
 	mc:Ignorable="d">
 	<Window.Resources>
 		<viewModels:CustomerViewModel x:Key="CustomerViewModel" />
@@ -32,6 +40,14 @@
 				Visibility="Collapsed" />
 			<views:FlightLegsView
 				x:Name="FlightLegsView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="Collapsed" />
+			<views:AddCharterTripView
+				x:Name="AddCharterTripView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="Collapsed" />
+			<views:AddCharterTripView2
+				x:Name="AddCharterTripView2"
 				DataContext="{StaticResource CustomerViewModel}"
 				Visibility="Collapsed" />
 		</Grid>

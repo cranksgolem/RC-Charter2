@@ -13,63 +13,83 @@ namespace RC_Charter2.UnitsOfWork
 	public class AircraftUnitOfWork : IDisposable
 	{
 		private RC_Charter2Context _context;
-		private IRepository<Aircraft> AircraftRepository { get; set; }
-		private IRepository<AircraftProperties> AircraftPropertiesRepository { get; set; }
-		private IRepository<License> LicenseRepository { get; set; }
-		private IRepository<CrewRequirement> CrewRequirementRepository { get; set; }
+		private IRepository<Aircraft> _aircraftRepository { get; set; }
+		private IRepository<AircraftProperties> _aircraftPropertiesRepository { get; set; }
+		private IRepository<License> _licenseRepository { get; set; }
+		private IRepository<CrewRequirement> _crewRequirementRepository { get; set; }
 
 		public AircraftUnitOfWork()
 		{
 			_context = new RC_Charter2Context();
-			AircraftRepository = new EfRepository<Aircraft>(_context);
-			AircraftPropertiesRepository = new EfRepository<AircraftProperties>(_context);
-			LicenseRepository = new EfRepository<License>(_context);
-			CrewRequirementRepository = new EfRepository<CrewRequirement>(_context);
+			_aircraftRepository = new EfRepository<Aircraft>(_context);
+			_aircraftPropertiesRepository = new EfRepository<AircraftProperties>(_context);
+			_licenseRepository = new EfRepository<License>(_context);
+			_crewRequirementRepository = new EfRepository<CrewRequirement>(_context);
 		}
 
 		public void AddAircraft(Aircraft aircraft, AircraftProperties aircraftProperties)
 		{
 			aircraft.AircraftPropertiesId = aircraftProperties.AircraftPropertiesId;
-			AircraftRepository.Add(aircraft);
-			AircraftRepository.SaveChanges();
+			_aircraftRepository.Add(aircraft);
+			_aircraftRepository.SaveChanges();
 		}
 
 		public void AddAircraftProperties(AircraftProperties aircraftProperties)
 		{
-			AircraftPropertiesRepository.Add(aircraftProperties);
-			AircraftPropertiesRepository.SaveChanges();
+			_aircraftPropertiesRepository.Add(aircraftProperties);
+			_aircraftPropertiesRepository.SaveChanges();
 		}
 
 		public void AddCrewRequirement(CrewRequirement crewRequirement, AircraftProperties aircraftProperties, License license)
 		{
 			crewRequirement.AircraftPropertiesId = aircraftProperties.AircraftPropertiesId;
 			crewRequirement.LicenseType = license.LicenseType;
-			CrewRequirementRepository.Add(crewRequirement);
-			CrewRequirementRepository.SaveChanges();
+			_crewRequirementRepository.Add(crewRequirement);
+			_crewRequirementRepository.SaveChanges();
 		}
 
 		public void UpdateAircraft(Aircraft aircraft)
 		{
-			AircraftRepository.Update(aircraft);
-			AircraftRepository.SaveChanges();
+			_aircraftRepository.Update(aircraft);
+			_aircraftRepository.SaveChanges();
 		}
 
-		public async Task<IEnumerable<Aircraft>> GetAircraft(Expression<Func<Aircraft, bool>> query)
+		public IEnumerable<Aircraft> GetAircraft(Expression<Func<Aircraft, bool>> query)
 		{
-			return await AircraftRepository.Query()
-				.Where(query)
-				.ToListAsync()
-				.ConfigureAwait(false);
+			return _aircraftRepository.GetRange(query);
 		}
 
-		public async Task<IEnumerable<Aircraft>> GetAllAircraft()
+		public IEnumerable<Aircraft> GetAllAircraft()
 		{
-			return await GetAircraft(c => true).ConfigureAwait(false);
+			return GetAircraft(c => true);
+		}
+
+		public License GetLicense(Expression<Func<License, bool>> query)
+		{
+			return _licenseRepository.Get(query);
 		}
 
 		public IEnumerable<CrewRequirement> GetCrewRequirements(Expression<Func<CrewRequirement, bool>> query)
 		{
-			return CrewRequirementRepository.GetRange(query);
+			return _crewRequirementRepository.GetRange(query);
+		}
+
+		public AircraftProperties GetAircraftProperties(Expression<Func<AircraftProperties, bool>> query)
+		{
+			return _aircraftPropertiesRepository.Get(query);
+		}
+
+		public IEnumerable<Aircraft> GetAircraftByPage(int itemPerPage, int page)
+		{
+			return _aircraftRepository.Query()
+				.Skip(itemPerPage * (page - 1))
+				.Take(itemPerPage)
+				.ToList();
+		}
+
+		public int GetAircraftCount()
+		{
+			return _aircraftRepository.Query().Count();
 		}
 
 

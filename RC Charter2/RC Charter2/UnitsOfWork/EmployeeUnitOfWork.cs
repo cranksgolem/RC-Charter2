@@ -13,71 +13,86 @@ namespace RC_Charter2.UnitsOfWork
 	public class EmployeeUnitOfWork : IDisposable
 	{
 		private RC_Charter2Context _context;
-		private IRepository<Employee> EmployeeRepository { get; set; }
-		private IRepository<Test> TestRepository { get; set; }
-		private IRepository<Result> ResultRepository { get; set; }
-		private IRepository<License> LicenseRepository { get; set; }
-		private IRepository<Licensure> LicensureRepository { get; set; }
+		private IRepository<Employee> _employeeRepository { get; set; }
+		private IRepository<Test> _testRepository { get; set; }
+		private IRepository<Result> _resultRepository { get; set; }
+		private IRepository<License> _licenseRepository { get; set; }
+		private IRepository<Licensure> _licensureRepository { get; set; }
 
 		public EmployeeUnitOfWork()
 		{
 			_context = new RC_Charter2Context();
-			EmployeeRepository = new EfRepository<Employee>(_context);
-			TestRepository = new EfRepository<Test>(_context);
-			ResultRepository = new EfRepository<Result>(_context);
-			LicenseRepository = new EfRepository<License>(_context);
-			LicensureRepository = new EfRepository<Licensure>(_context);
+			_employeeRepository = new EfRepository<Employee>(_context);
+			_testRepository = new EfRepository<Test>(_context);
+			_resultRepository = new EfRepository<Result>(_context);
+			_licenseRepository = new EfRepository<License>(_context);
+			_licensureRepository = new EfRepository<Licensure>(_context);
 		}
 
 		public void AddEmployee(Employee employee)
 		{
-			EmployeeRepository.Add(employee);
-			EmployeeRepository.SaveChanges();
+			_employeeRepository.Add(employee);
+			_employeeRepository.SaveChanges();
 		}
 
 		public void UpdateEmployee(Employee employee)
 		{
-			EmployeeRepository.Update(employee);
-			EmployeeRepository.SaveChanges();
+			_employeeRepository.Update(employee);
+			_employeeRepository.SaveChanges();
 		}
 
 		public void AddLicensure(Licensure licensure, Employee employee, License license)
 		{
 			licensure.EmployeeId = employee.EmployeeId;
 			licensure.LicenseType = licensure.LicenseType;
-			LicensureRepository.Add(licensure);
-			LicensureRepository.SaveChanges();
+			_licensureRepository.Add(licensure);
+			_licensureRepository.SaveChanges();
 		}
 
 		public void AddResult(Result result, Employee employee, Test test)
 		{
 			result.EmployeeId = employee.EmployeeId;
 			result.TestCode = test.TestCode;
-			ResultRepository.Add(result);
-			ResultRepository.SaveChanges();
+			_resultRepository.Add(result);
+			_resultRepository.SaveChanges();
 		}
 
-		public async Task<IEnumerable<Employee>> GetEmployees(Expression<Func<Employee,bool>> query)
+		public IEnumerable<Employee> GetEmployees(Expression<Func<Employee,bool>> query)
 		{
-			return await EmployeeRepository.Query()
-				.Where(query)
-				.ToListAsync()
-				.ConfigureAwait(false);
+			return _employeeRepository.GetRange(query);
 		}
 
-		public async Task<IEnumerable<Employee>> GetAllEmployees()
+		public IEnumerable<Employee> GetAllEmployees()
 		{
-			return await GetEmployees(c => true).ConfigureAwait(false);
+			return GetEmployees(c => true);
+		}
+
+		public int GetEmployeesCount()
+		{
+			return _employeeRepository.Query().Count();
 		}
 
 		public IEnumerable<Licensure> GetLicensures(Expression<Func<Licensure, bool>> query)
 		{
-			return LicensureRepository.GetRange(query);
+			return _licensureRepository.GetRange(query);
+		}
+
+		public License GetLicense(Expression<Func<License, bool>> query)
+		{
+			return _licenseRepository.Get(query);
 		}
 
 		public IEnumerable<Result> GetResults(Expression<Func<Result, bool>> query)
 		{
-			return ResultRepository.GetRange(query);
+			return _resultRepository.GetRange(query);
+		}
+
+		public IEnumerable<Employee> GetEmployeesByPage(int itemPerPage, int page)
+		{
+			return _employeeRepository.Query()
+				.Skip(itemPerPage * (page - 1))
+				.Take(itemPerPage)
+				.ToList();
 		}
 
 		private bool _isDisposing;

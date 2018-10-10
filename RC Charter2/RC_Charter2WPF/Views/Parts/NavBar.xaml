@@ -15,25 +15,33 @@
 			<ColumnDefinition />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
-		<Button x:Name="BtnCustomerView"
+		<Button
+			x:Name="BtnCustomerView"
 			Grid.Column="0"
 			Margin="4"
 			Padding="4"
-			Content="Customer" Click="BtnCustomerView_Click" />
-		<Button x:Name="BtnEmployeeView"
+			Click="BtnCustomerView_Click"
+			Content="Customer"
+			Style="{DynamicResource MaterialDesignFlatButton}" />
+		<Button
+			x:Name="BtnEmployeeView"
 			Grid.Column="1"
 			Margin="4"
 			Padding="4"
-			Content="Employee" Click="Button_Click" />
+			Click="Button_Click"
+			Content="Employee"
+			Style="{DynamicResource MaterialDesignFlatButton}" />
 		<Button
 			Grid.Column="2"
 			Margin="4"
 			Padding="4"
-			Content="Aircraft" />
+			Content="Aircraft"
+			Style="{DynamicResource MaterialDesignFlatButton}" />
 		<Button
 			Grid.Column="3"
 			Margin="4"
 			Padding="4"
-			Content="Charter Trip" />
+			Content="Charter Trip"
+			Style="{DynamicResource MaterialDesignFlatButton}" />
 	</Grid>
 </UserControl>

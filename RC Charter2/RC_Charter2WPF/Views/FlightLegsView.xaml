@@ -11,20 +11,14 @@
 	mc:Ignorable="d">
 	<Grid>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="1*" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<parts:FlightLegsList />
 		</Grid>
-		<Grid Grid.Row="2" HorizontalAlignment="Left">
-			<Button
-				x:Name="BtnBack"
-				Margin="4"
-				Padding="4"
-				Click="BtnBack_Click"
-				Content="Back" />
+		<Grid Grid.Row="1">
+			<parts:FlightDetails x:Name="GridFlightLegDetails" />
 		</Grid>
 	</Grid>
 </UserControl>

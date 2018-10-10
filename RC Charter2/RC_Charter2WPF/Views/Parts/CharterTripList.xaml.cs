@@ -33,11 +33,26 @@ namespace RC_Charter2WPF.Views.Parts
 				if (LbCharterTrips.SelectedItem != null)
 				{
 					(parentWindow as MainWindow).CustomerView.CharterTripDetails.GridCharterTripDetails.Visibility = Visibility.Visible;
+					(parentWindow as MainWindow).CustomerView.CharterTripDetails.BtnViewFlightLegs.Visibility = Visibility.Visible;
+					(parentWindow as MainWindow).CustomerView.CharterTripDetails.BtnViewPaymentHistory.Visibility = Visibility.Visible;
 				}
+			
 				else
 				{
 					(parentWindow as MainWindow).CustomerView.CharterTripDetails.GridCharterTripDetails.Visibility = Visibility.Collapsed;
+					(parentWindow as MainWindow).CustomerView.CharterTripDetails.BtnViewFlightLegs.Visibility = Visibility.Collapsed;
+					(parentWindow as MainWindow).CustomerView.CharterTripDetails.BtnViewPaymentHistory.Visibility = Visibility.Collapsed;
 				}
+			}
+		}
+
+		private void BtnAdd_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Visible;
 			}
 		}
 	}

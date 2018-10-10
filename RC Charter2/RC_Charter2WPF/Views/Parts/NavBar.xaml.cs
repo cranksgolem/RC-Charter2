@@ -33,6 +33,8 @@ namespace RC_Charter2WPF.Views.Parts
 				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Visible;
 				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
 				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Collapsed;
 			}
 		}
 
@@ -44,6 +46,8 @@ namespace RC_Charter2WPF.Views.Parts
 				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Collapsed;
 				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
 				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
 			}
 		}
 	}

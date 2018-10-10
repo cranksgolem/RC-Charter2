@@ -18,5 +18,10 @@ namespace RC_Charter2.Models
 
 		public ICollection<CrewRequirement> CrewRequirements { get; set; }
 		public ICollection<Licensure> Licensures { get; set; }
+
+		public override string ToString()
+		{
+			return Description;
+		}
 	}
 }

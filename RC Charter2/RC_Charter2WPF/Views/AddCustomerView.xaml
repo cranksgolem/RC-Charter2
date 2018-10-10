@@ -16,6 +16,7 @@
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<TextBlock
+				x:Name="TblAddCustomerHeader"
 				Margin="4"
 				Padding="4"
 				FontSize="30"
@@ -61,21 +62,21 @@
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				Text="{Binding Path=NewCustomerName}" />
+				Text="{Binding Path=NewCustomerName, Mode=TwoWay}" />
 			<TextBox
 				x:Name="TbxNewCustomerAddress"
 				Grid.Row="1"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				Text="{Binding Path=NewCustomerAddress}" />
+				Text="{Binding Path=NewCustomerAddress, Mode=TwoWay}" />
 			<TextBox
 				x:Name="TbxNewCustomerAvailableCredits"
 				Grid.Row="2"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				Text="{Binding Path=NewCustomerAvailableCredits}" />
+				Text="{Binding Path=NewCustomerAvailableCredits, Mode=TwoWay}" />
 		</Grid>
 		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
@@ -99,6 +100,16 @@
 				Click="BtnConfirmAddCustomer_Click"
 				Command="{Binding Path=AddCustomerCommand}"
 				Content="Add" />
+			<Button
+				x:Name="BtnConfirmEditCustomer"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				Click="BtnConfirmEditCustomer_Click"
+				Command="{Binding Path=EditCustomerCommand}"
+				Content="Save"
+				Visibility="Collapsed" />
 		</Grid>
 	</Grid>
 </UserControl>
