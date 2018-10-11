@@ -15,22 +15,43 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
 			<TextBlock
+				Grid.Column="0"
 				Margin="4"
 				Padding="4"
 				FontSize="20"
 				Text="Selected Crew Members:" />
+			<Button
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				Background="Transparent"
+				BorderBrush="Transparent"
+				Command="{Binding Path=RemoveSelectedEmployeeFromEmployeesToBeAssignedCommand}">
+				<Viewbox Width="20" Height="20">
+					<Canvas Width="24" Height="24">
+						<Path Data="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" Fill="Black" />
+					</Canvas>
+				</Viewbox>
+			</Button>
 		</Grid>
 		<Grid Grid.Row="1">
 			<ListBox
+				x:Name="LbxEmployeesToBeAssigned"
 				Margin="4"
 				Padding="4"
-				ItemsSource="{Binding Path=NewCharterTripEmployeesToBeAssigned}">
+				ItemsSource="{Binding Path=NewCharterTripEmployeesToBeAssigned}"
+				SelectedItem="{Binding Path=SelectedEmployeeToBeAssigned}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal">
 							<Grid>
 								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="*" />
 									<ColumnDefinition Width="*" />
 								</Grid.ColumnDefinitions>
@@ -44,6 +65,10 @@
 								Margin="20,0,0,0"
 								ItemsSource="{Binding Path=Licenses}"
 								SelectedItem="{Binding Path=SelectedLicense}" />
+							<TextBlock
+								Grid.Column="2"
+								Margin="10,10,0,0"
+								Text="{Binding Path=Status}" />
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>

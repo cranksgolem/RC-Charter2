@@ -58,9 +58,10 @@
 				<Button
 					Grid.Column="1"
 					Margin="4"
-					Padding="4"
+					Padding="4" x:Name="BtnComplete"
 					HorizontalAlignment="Right"
-					Content="Complete" />
+					Command="{Binding Path=FinalizeNewCharterTripCommand}"
+					Content="Complete" Click="BtnComplete_Click" />
 				<Button
 					x:Name="BtnConfirmEditCustomer"
 					Grid.Column="1"

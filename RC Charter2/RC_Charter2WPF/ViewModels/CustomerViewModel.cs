@@ -15,6 +15,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using RC_Charter2.Models;
 using RC_Charter2.UnitsOfWork;
+using RC_Charter2WPF.Placeholder_Classes;
 using RC_Charter2WPF.Views.Parts;
 using License = RC_Charter2.Models.License;
 
@@ -22,6 +23,7 @@ namespace RC_Charter2WPF.ViewModels
 {
     public class CustomerViewModel : ObservableObject
     {
+	    private string _selectedPurpose;
 	    private string _customerSearchText;
 	    private string _aircraftSearchText;
 	    private string _employeeSearchText;
@@ -38,8 +40,7 @@ namespace RC_Charter2WPF.ViewModels
 	    private Aircraft _selectedAircraft;
 	    private Employee _selectedEmployee;
 	    private EmployeeToBeAssigned _selectedEmployeeToBeAssigned;
-	    private Aircraft _confirmedSelectedAircraft;
-	    private AircraftProperties _confirmedSelectedAircraftProperties;
+	    private AircraftProperties _selectedAircraftProperties;
 	    private ListCollectionView _customerListView;
 	    private ListCollectionView _aircraftListView;
 	    private ListCollectionView _employeeListView;
@@ -59,6 +60,247 @@ namespace RC_Charter2WPF.ViewModels
 	    private string _newCustomerAddress;
 	    private decimal? _newCustomerAvailableCredits;
 	    private ObservableCollection<ListViewItem> _crewRequirementListViewItems;
+
+		//For new flight leg
+		public ObservableCollection<string> StatesList { get; } = new ObservableCollection<string>{"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
+			"Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+			"Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico",
+			"New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+			"Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "Canada"};
+
+	    private DateTime _newFlightDate;
+	    private DateTime _newFlightTimeDeparture;
+	    private DateTime _newFlightTimeArrival;
+	    private string _newFlightOrigin;
+	    private string _newFlightDestination;
+	    private float? _newFlightDistanceFlown;
+	    private float? _newFlightWaitingTime;
+	    private float? _newFlightFuelUsage;
+	    private int? _newFlightOrder;
+
+	    public DateTime NewFlightDate
+	    {
+		    get => _newFlightDate;
+		    set
+		    {
+			    _newFlightDate = value;
+				RaisePropertyChanged(nameof(NewFlightDate));
+		    }
+	    }
+
+	    public DateTime NewFlightTimeDeparture
+	    {
+		    get => _newFlightTimeDeparture;
+		    set
+		    {
+			    _newFlightTimeDeparture = value;
+				RaisePropertyChanged(nameof(NewFlightTimeDeparture));
+		    }
+	    }
+
+	    public DateTime NewFlightTimeArrival
+	    {
+		    get => _newFlightTimeArrival;
+		    set
+		    {
+			    _newFlightTimeArrival = value;
+				RaisePropertyChanged(nameof(NewFlightTimeArrival));
+		    }
+	    }
+
+	    public string NewFlightOrigin
+	    {
+		    get => _newFlightOrigin;
+		    set
+		    {
+			    _newFlightOrigin = value;
+				RaisePropertyChanged(nameof(NewFlightOrigin));
+		    }
+	    }
+
+	    public string NewFlightDestination
+	    {
+		    get => _newFlightDestination;
+		    set
+		    {
+			    _newFlightDestination = value;
+				RaisePropertyChanged(nameof(NewFlightDestination));
+		    }
+	    }
+
+	    public float? NewFlightDistanceFlown
+	    {
+		    get => _newFlightDistanceFlown;
+		    set
+		    {
+			    _newFlightDistanceFlown = value;
+				RaisePropertyChanged(nameof(NewFlightDistanceFlown));
+		    }
+	    }
+
+	    public float? NewFlightWaitingTime
+	    {
+		    get => _newFlightWaitingTime;
+		    set
+		    {
+			    _newFlightWaitingTime = value;
+				RaisePropertyChanged(nameof(NewFlightWaitingTime));
+		    }
+	    }
+
+	    public float? NewFlightFuelUsage
+	    {
+		    get => _newFlightFuelUsage;
+		    set
+		    {
+			    _newFlightFuelUsage = value;
+				RaisePropertyChanged(nameof(NewFlightFuelUsage));
+		    }
+	    }
+
+	    public int? NewFlightOrder
+	    {
+		    get => _newFlightOrder;
+		    set
+		    {
+			    _newFlightOrder = value;
+				RaisePropertyChanged(nameof(NewFlightOrder));
+		    }
+	    }
+
+	    private void InitializeNewFlightAttributes()
+	    {
+		    NewFlightDate = DateTime.Now.Date;
+		    NewFlightOrder = FlightList.Count + 1;
+
+		    if (FlightList.Count != 0)
+		    {
+			    int? orderOfLastFlight = 0;
+
+			    foreach (var flight in FlightList)
+			    {
+				    if (flight.Order > orderOfLastFlight)
+				    {
+					    orderOfLastFlight = flight.Order;
+				    }
+			    }
+
+			    NewFlightOrigin = FlightList.FirstOrDefault(c => c.Order == orderOfLastFlight).Destination;
+		    }
+	    }
+
+	    private void AddNewFlight()
+	    {
+			var newFlight = new Flight();
+		    newFlight.Destination = NewFlightDestination;
+		    newFlight.Order = NewFlightOrder;
+		    newFlight.Date = NewFlightDate;
+		    newFlight.DistanceFlown = NewFlightDistanceFlown;
+		    newFlight.FuelUsage = NewFlightFuelUsage;
+		    newFlight.Origin = NewFlightOrigin;
+		    newFlight.TimeArrival = NewFlightTimeArrival;
+		    newFlight.TimeDeparture = NewFlightTimeDeparture;
+		    newFlight.WaitingTime = NewFlightWaitingTime;
+
+			_ctUow.AddFlightToCharterTrip(newFlight, SelectedCharterTrip);
+
+		    if (SelectedCharterTrip.TotalDistanceFlown == null || SelectedCharterTrip.TotalDistanceFlown == 0)
+		    {
+			    SelectedCharterTrip.TotalDistanceFlown = NewFlightDistanceFlown;
+			    SelectedCharterTrip.Origin = NewFlightOrigin;
+			    SelectedCharterTrip.FinalDestination = NewFlightDestination;
+		    }
+		    else
+		    {
+			    SelectedCharterTrip.TotalDistanceFlown += NewFlightDistanceFlown;
+			    SelectedCharterTrip.FinalDestination = NewFlightDestination;
+		    }
+
+		    if (SelectedCharterTrip.TotalFuelUsage == null || SelectedCharterTrip.TotalFuelUsage == 0)
+		    {
+			    SelectedCharterTrip.TotalFuelUsage = NewFlightFuelUsage;
+		    }
+		    else
+		    {
+			    SelectedCharterTrip.TotalFuelUsage += NewFlightFuelUsage;
+		    }
+
+		    if (SelectedCharterTrip.TotalWaitingTime == null || SelectedCharterTrip.TotalWaitingTime == 0)
+		    {
+			    SelectedCharterTrip.TotalWaitingTime = NewFlightWaitingTime;
+		    }
+		    else
+		    {
+			    SelectedCharterTrip.TotalWaitingTime += NewFlightWaitingTime;
+		    }
+
+			_ctUow.UpdateCharterTrip(SelectedCharterTrip);
+
+			LoadFlightLegs();
+
+		    NewFlightDestination = null;
+		    NewFlightDistanceFlown = null;
+		    NewFlightFuelUsage = null;
+		    NewFlightWaitingTime = null;
+	    }
+
+	    private void DeleteFlight()
+	    {
+		    if (SelectedFlight != null)
+		    {
+			    var result = MessageBox.Show("Are you sure you want to delete this flight leg?",
+				    "Confirm Delete Flight Leg", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+			    if (result == MessageBoxResult.Yes)
+			    {
+				    SelectedCharterTrip.TotalDistanceFlown -= SelectedFlight.DistanceFlown;
+				    SelectedCharterTrip.TotalFuelUsage -= SelectedFlight.FuelUsage;
+				    SelectedCharterTrip.TotalWaitingTime -= SelectedFlight.WaitingTime;
+
+				    if (SelectedCharterTrip.TotalDistanceFlown == 0)
+				    {
+					    SelectedCharterTrip.Origin = null;
+					    SelectedCharterTrip.FinalDestination = null;
+				    }
+				    else
+				    {
+						int? flightOrderOfLastDestination = 0;
+
+					    foreach (var flight in FlightList)
+					    {
+						    if (flight.Order > flightOrderOfLastDestination && flight.FlightId != SelectedFlight.FlightId)
+						    {
+							    flightOrderOfLastDestination = flight.Order;
+						    }
+					    }
+
+					    SelectedCharterTrip.FinalDestination =
+						    FlightList.FirstOrDefault(c => c.Order == flightOrderOfLastDestination).Destination;
+				    }
+
+					_ctUow.UpdateCharterTrip(SelectedCharterTrip);
+				    _ctUow.DeleteFlight(SelectedFlight);
+				    LoadFlightLegs();
+			    }
+		    }
+	    }
+
+	    public ICommand AddNewFlightCommand => new RelayCommand(AddNewFlight);
+	    public ICommand InitializeNewFlightAttributesCommand => new RelayCommand(InitializeNewFlightAttributes);
+	    public ICommand DeleteFlightCommand => new RelayCommand(DeleteFlight);
+	    public ICommand LoadCharterTripsCommand => new RelayCommand(LoadCharterTrips);
+
+		//End of for new flight leg
+
+		public String SelectedPurpose
+	    {
+		    get => _selectedPurpose;
+		    set
+		    {
+			    _selectedPurpose = value;
+				RaisePropertyChanged(nameof(SelectedPurpose));
+		    }
+	    }
 
 	    public EmployeeToBeAssigned SelectedEmployeeToBeAssigned
 	    {
@@ -114,26 +356,15 @@ namespace RC_Charter2WPF.ViewModels
 		    }
 	    }
 
-	    public AircraftProperties ConfirmedSelectedAircraftProperties
+	    public AircraftProperties SelectedAircraftProperties
 	    {
-		    get => _confirmedSelectedAircraftProperties;
+		    get => _selectedAircraftProperties;
 		    set
 		    {
-			    _confirmedSelectedAircraftProperties = value;
-				RaisePropertyChanged(nameof(ConfirmedSelectedAircraftProperties));
+			    _selectedAircraftProperties = value;
+				RaisePropertyChanged(nameof(SelectedAircraftProperties));
 				GetSelectedAircraftCrewRequirements();
 				FillCrewRequirementList();
-		    }
-	    }
-
-	    public Aircraft ConfirmedSelectedAircraft
-	    {
-		    get => _confirmedSelectedAircraft;
-		    set
-		    {
-			    _confirmedSelectedAircraft = value;
-				RaisePropertyChanged(nameof(ConfirmedSelectedAircraft));
-			    ConfirmedSelectedAircraftProperties = _aircraftUow.GetAircraftProperties(c => c.AircraftPropertiesId == value.AircraftPropertiesId);
 		    }
 	    }
 
@@ -144,7 +375,14 @@ namespace RC_Charter2WPF.ViewModels
 		    {
 			    _selectedAircraft = value;
 			    RaisePropertyChanged(nameof(SelectedAircraft));
-		    }
+			    if (value != null)
+			    {
+				    SelectedAircraftProperties =
+					    _aircraftUow.GetAircraftProperties(c => c.AircraftPropertiesId == value.AircraftPropertiesId);
+			    }
+
+			    NewCharterTripEmployeesToBeAssigned.Clear();
+			}
 	    }
 
 		public string NewCustomerName
@@ -164,6 +402,54 @@ namespace RC_Charter2WPF.ViewModels
 		    {
 			    _newCustomerAddress = value;
 			    RaisePropertyChanged(nameof(NewCustomerAddress));
+		    }
+	    }
+
+	    private void FinalizeNewCharterTrip()
+	    {
+		    bool hasSufficientCrew = true;
+
+		    foreach (var selectedAircraftCrewRequirement in SelectedAircraftCrewRequirements)
+		    {
+			    var testList = NewCharterTripEmployeesToBeAssigned.Where(c =>
+				    c.SelectedLicense.LicenseType == selectedAircraftCrewRequirement.LicenseType);
+
+			    if (!(testList.Count() >= selectedAircraftCrewRequirement.RequiredNumber))
+			    {
+				    hasSufficientCrew = false;
+			    }
+		    }
+
+		    if (SelectedPurpose != null && SelectedAircraft != null && hasSufficientCrew == true)
+		    {
+			    var newCharterTrip = new CharterTrip {Purpose = SelectedPurpose};
+
+			    _ctUow.AddCharterTrip(newCharterTrip, SelectedAircraft, SelectedCustomer);
+
+			    foreach (var employeeToBeAssigned in NewCharterTripEmployeesToBeAssigned)
+			    {
+				    var newCrewAssignment = new CrewAssignment();
+				    newCrewAssignment.Role = employeeToBeAssigned.SelectedLicense.Description;
+				    newCrewAssignment.DateAssigned = DateTime.Now.Date;
+
+				    var employeeAssigned =
+					    _employeeUow.GetEmployee(c => c.EmployeeId == employeeToBeAssigned.EmployeeId);
+
+				    _ctUow.AddCrewMember(newCrewAssignment, employeeAssigned, newCharterTrip);
+			    }
+
+			    SelectedPurpose = null;
+			    SelectedAircraft = null;
+				SelectedAircraftCrewRequirements.Clear();
+			    CrewRequirementListViewItems.Clear();
+			    SelectedEmployee = null;
+				NewCharterTripEmployeesToBeAssigned.Clear();
+				LoadCharterTrips();
+		    }
+		    else
+		    {
+			    MessageBox.Show("Make sure to fill out every field and ensure that you have sufficient crew members!",
+				    "Failed To Create Charter Trip", MessageBoxButton.OK, MessageBoxImage.Error);
 		    }
 	    }
 
@@ -212,29 +498,91 @@ namespace RC_Charter2WPF.ViewModels
 		    _employeeListView.GroupDescriptions.Add(new PropertyGroupDescription("Name[0]"));
 		}
 
+	    private void RemoveSelectedEmployeeFromEmployeesToBeAssigned()
+	    {
+		    if (SelectedEmployeeToBeAssigned != null)
+		    {
+			    NewCharterTripEmployeesToBeAssigned.Remove(SelectedEmployeeToBeAssigned);
+			    FillCrewRequirementList();
+		    }
+	    }
+
 	    private void AddSelectedEmployeeToEmployeesToBeAssigned()
 	    {
-		    var testEmployee =
-			    NewCharterTripEmployeesToBeAssigned.FirstOrDefault(c => c.EmployeeId == SelectedEmployee.EmployeeId);
-
-		    if (testEmployee == null)
+		    if (SelectedEmployee != null)
 		    {
+			    var testEmployee =
+				    NewCharterTripEmployeesToBeAssigned.FirstOrDefault(c =>
+					    c.EmployeeId == SelectedEmployee.EmployeeId);
 
-			    EmployeeToBeAssigned newEmployeeToBeAssigned = new EmployeeToBeAssigned();
-
-			    newEmployeeToBeAssigned.EmployeeId = SelectedEmployee.EmployeeId;
-			    newEmployeeToBeAssigned.Name = SelectedEmployee.Name;
-			    newEmployeeToBeAssigned.Address = SelectedEmployee.Address;
-
-			    var licensures = _employeeUow.GetLicensures(c => c.EmployeeId == SelectedEmployee.EmployeeId);
-
-			    foreach (var x in licensures)
+			    if (testEmployee == null)
 			    {
-				    var license = _employeeUow.GetLicense(c => c.LicenseType == x.LicenseType);
-				    newEmployeeToBeAssigned.Licenses.Add(license);
-			    }
 
-			    NewCharterTripEmployeesToBeAssigned.Add(newEmployeeToBeAssigned);
+				    EmployeeToBeAssigned newEmployeeToBeAssigned = new EmployeeToBeAssigned();
+
+				    newEmployeeToBeAssigned.EmployeeId = SelectedEmployee.EmployeeId;
+				    newEmployeeToBeAssigned.Name = SelectedEmployee.Name;
+				    newEmployeeToBeAssigned.Address = SelectedEmployee.Address;
+
+				    var licensures = _employeeUow.GetLicensures(c => c.EmployeeId == SelectedEmployee.EmployeeId);
+
+				    foreach (var x in licensures)
+				    {
+					    var license = _employeeUow.GetLicense(c => c.LicenseType == x.LicenseType);
+					    newEmployeeToBeAssigned.Licenses.Add(license);
+				    }
+
+				    NewCharterTripEmployeesToBeAssigned.Add(newEmployeeToBeAssigned);
+			    }
+		    }
+	    }
+
+	    private void DeleteSelectedCharterTrip()
+	    {
+		    if (SelectedCharterTrip != null)
+		    {
+			    var result = MessageBox.Show(
+				    "Are you sure you want to delete this charter trip? All flights, charges, payments, and other entities associated with this charter trip will be deleted as well.",
+				    "Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+			    if (result == MessageBoxResult.Yes)
+			    {
+				    var listCrewAssignments =
+					    _ctUow.GetCrewAssignments(c =>
+						    c.CharterTrip.CharterTripId == SelectedCharterTrip.CharterTripId);
+
+				    foreach (var x in listCrewAssignments)
+				    {
+					    _ctUow.DeleteCrewAssignment(x);
+				    }
+
+				    var listFlightLegs = _ctUow.GetFlights(c => c.CharterTripId == SelectedCharterTrip.CharterTripId);
+
+				    foreach (var flightLeg in listFlightLegs)
+				    {
+					    _ctUow.DeleteFlight(flightLeg);
+				    }
+
+				    var listCharterFlightCharges =
+						    _ctUow.GetCharterFlightCharges(c => c.CharterTripId == SelectedCharterTrip.CharterTripId)
+					    ;
+
+				    foreach (var charterFlightCharge in listCharterFlightCharges)
+				    {
+					    _ctUow.DeleteCharterFlightCharge(charterFlightCharge);
+				    }
+
+				    var listBalanceHistories =
+					    _ctUow.GetBalanceHistories(c => c.CharterTripId == SelectedCharterTrip.CharterTripId);
+
+				    foreach (var balanceHistory in listBalanceHistories)
+				    {
+					    _ctUow.DeleteBalanceHistory(balanceHistory);
+				    }
+
+				    _ctUow.DeleteCharterTrip(SelectedCharterTrip);
+				    LoadCharterTrips();
+			    }
 		    }
 	    }
 
@@ -295,7 +643,7 @@ namespace RC_Charter2WPF.ViewModels
 	    private void GetSelectedAircraftCrewRequirements()
 	    {
 		    var _crewRequirements = _aircraftUow.GetCrewRequirements(c =>
-			    c.AircraftPropertiesId == ConfirmedSelectedAircraftProperties.AircraftPropertiesId);
+			    c.AircraftPropertiesId == SelectedAircraftProperties.AircraftPropertiesId);
 
 			SelectedAircraftCrewRequirements.Clear();
 			foreach (var x in _crewRequirements)
@@ -307,27 +655,90 @@ namespace RC_Charter2WPF.ViewModels
 	    private void FillCrewRequirementList()
 	    {
 		    CrewRequirementListViewItems.Clear();
+			ObservableCollection<License> _neededLicenses = new ObservableCollection<License>();
+
 		    foreach (var x in SelectedAircraftCrewRequirements)
+		    {
+				var _neededLicense = _aircraftUow.GetLicense(c => c.LicenseType == x.LicenseType);
+
+			    _neededLicenses.Add(_neededLicense);
+			}
+
+		    foreach (var employeeToBeAssigned in NewCharterTripEmployeesToBeAssigned)
+		    {
+			    foreach (var neededLicense in _neededLicenses)
+			    {
+				    if (neededLicense.LicenseType == employeeToBeAssigned.SelectedLicense.LicenseType)
+				    {
+					    employeeToBeAssigned.Status = "";
+					    break;
+				    }
+
+				    if (employeeToBeAssigned.SelectedLicense.LicenseType != null && !(_neededLicenses.Contains(employeeToBeAssigned.SelectedLicense)))
+				    {
+					    employeeToBeAssigned.Status = "EXTRA CREW";
+				    }
+			    }
+		    }
+
+			foreach (var x in SelectedAircraftCrewRequirements)
 		    {
 			    ListViewItem _newListRequirement = new ListViewItem();
 			    var _neededLicense = _aircraftUow.GetLicense(c => c.LicenseType == x.LicenseType);
 			    _newListRequirement.Content = x.RequiredNumber.ToString() + " " + _neededLicense.Description;
 
+
 				var testList = NewCharterTripEmployeesToBeAssigned.Where(c =>
 					c.SelectedLicense.LicenseType == _neededLicense.LicenseType);
 
-				if (testList.Count() >= x.RequiredNumber)
+				if (testList.Count() == x.RequiredNumber)
 				{
-					_newListRequirement.Background = Brushes.LightGreen;
+					_newListRequirement.Background = Brushes.PaleGreen;
+					foreach (var employeeToBeAssigned in testList)
+					{
+						NewCharterTripEmployeesToBeAssigned[
+							NewCharterTripEmployeesToBeAssigned.IndexOf(employeeToBeAssigned)].Status = "";
+					}
+				}
+
+				else if (testList.Count() > x.RequiredNumber)
+				{
+					_newListRequirement.Background = Brushes.LightYellow;
+
+					int? extraCount = testList.Count() - x.RequiredNumber;
+					int currentCount = 0;
+
+					foreach (var employeeToBeAssigned in testList)
+					{
+						currentCount++;
+
+						if (currentCount >= testList.Count() - extraCount + 1)
+						{
+							NewCharterTripEmployeesToBeAssigned[
+								NewCharterTripEmployeesToBeAssigned.IndexOf(employeeToBeAssigned)].Status = "EXTRA CREW";
+						}
+
+						else
+						{
+							NewCharterTripEmployeesToBeAssigned[
+								NewCharterTripEmployeesToBeAssigned.IndexOf(employeeToBeAssigned)].Status = "";
+						}
+					}
+
 				}
 				else
 				{
 					_newListRequirement.Background = Brushes.Pink;
+					foreach (var employeeToBeAssigned in testList)
+					{
+						NewCharterTripEmployeesToBeAssigned[
+							NewCharterTripEmployeesToBeAssigned.IndexOf(employeeToBeAssigned)].Status = "";
+					}
 				}
 
 				CrewRequirementListViewItems.Add(_newListRequirement);
 		    }
-	    }
+		}
 
 	    private void LoadFlightLegs()
 	    {
@@ -535,17 +946,16 @@ namespace RC_Charter2WPF.ViewModels
 	    public ICommand EditCustomerInitCommand => new RelayCommand(EditCustomerInit);
 	    public ICommand AddCustomerInitCommand => new RelayCommand(AddCustomerInit);
 	    public ICommand DeleteCustomerCommand => new RelayCommand(DeleteCustomer);
-	    public ICommand ConfirmSelectedAircraftCommand => new RelayCommand(ConfirmSelectedAircraft);
 	    public ICommand AddSelectedEmployeeToEmployeesToBeAssignedCommand =>
 		    new RelayCommand(AddSelectedEmployeeToEmployeesToBeAssigned);
 
 	    public ICommand FillCrewRequirementListCommand => new RelayCommand(FillCrewRequirementList);
 
+	    public ICommand RemoveSelectedEmployeeFromEmployeesToBeAssignedCommand =>
+		    new RelayCommand(RemoveSelectedEmployeeFromEmployeesToBeAssigned);
 
-		private void ConfirmSelectedAircraft()
-	    {
-		    ConfirmedSelectedAircraft = SelectedAircraft;
-	    }
+	    public ICommand FinalizeNewCharterTripCommand => new RelayCommand(FinalizeNewCharterTrip);
+	    public ICommand DeleteSelectedCharterTripCommand => new RelayCommand(DeleteSelectedCharterTrip);
 
 		private void AddNewCustomer()
 	    {

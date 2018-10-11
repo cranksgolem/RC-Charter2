@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\App.xaml
-18-777888696
+19196043173
 
-28-177407705
-751902991106
-MainWindow.xaml;Views\AddCharterTripView.xaml;Views\AddCharterTripView2.xaml;Views\AddCustomerView.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\FlightLegsView.xaml;Views\Parts\AircraftDetails.xaml;Views\Parts\AircraftList.xaml;Views\Parts\CharterTripDetails.xaml;Views\Parts\CharterTripList.xaml;Views\Parts\CustomerList.xaml;Views\Parts\EmployeeList.xaml;Views\Parts\EmployeesToBeAssignedList.xaml;Views\Parts\FlightDetails.xaml;Views\Parts\FlightLegsList.xaml;Views\Parts\NavBar.xaml;Views\Parts\RequiredCrewList.xaml;
+30-145322398
+81-758606079
+MainWindow.xaml;Views\AddCharterTripView.xaml;Views\AddCharterTripView2.xaml;Views\AddCustomerView.xaml;Views\AddFlightView.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\FlightLegsView.xaml;Views\Parts\AircraftDetails.xaml;Views\Parts\AircraftList.xaml;Views\Parts\CharterTripDetails.xaml;Views\Parts\CharterTripList.xaml;Views\Parts\CustomerList.xaml;Views\Parts\EmployeeList.xaml;Views\Parts\EmployeesToBeAssignedList.xaml;Views\Parts\FlightDetails.xaml;Views\Parts\FlightLegsList.xaml;Views\Parts\NavBar.xaml;Views\Parts\RequiredCrewList.xaml;
 
-False
+True
 

@@ -68,6 +68,36 @@ namespace RC_Charter2.UnitsOfWork
 			_customerRepository.SaveChanges();
 		}
 
+		public void DeleteCharterTrip(CharterTrip charterTrip)
+		{
+			_charterTripRepository.Remove(charterTrip);
+			_charterTripRepository.SaveChanges();
+		}
+
+		public void DeleteCrewAssignment(CrewAssignment crewAssignment)
+		{
+			_crewAssignmentRepository.Remove(crewAssignment);
+			_crewAssignmentRepository.SaveChanges();
+		}
+
+		public void DeleteFlight(Flight flight)
+		{
+			_flightRepository.Remove(flight);
+			_flightRepository.SaveChanges();	
+		}
+
+		public void DeleteCharterFlightCharge(CharterFlightCharge charterFlightCharge)
+		{
+			_charterFlightChargeRepository.Remove(charterFlightCharge);
+			_charterFlightChargeRepository.SaveChanges();
+		}
+
+		public void DeleteBalanceHistory(BalanceHistory balanceHistory)
+		{
+			_balanceHistoryRepository.Remove(balanceHistory);
+			_balanceHistoryRepository.SaveChanges();
+		}
+
 		public void AddFlightToCharterTrip(Flight flight, CharterTrip charterTrip)
 		{
 			flight.CharterTripId = charterTrip.CharterTripId;

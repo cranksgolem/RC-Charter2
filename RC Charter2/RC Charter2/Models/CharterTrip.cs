@@ -21,7 +21,7 @@ namespace RC_Charter2.Models
 		public int? AircraftNumber { get; set; }
 		public int? CustomerId { get; set; }
 		public float? TotalDistanceFlown { get; set; }
-		public int? TotalWaitingTime { get; set; }
+		public float? TotalWaitingTime { get; set; }
 		public float? TotalFuelUsage { get; set; }
 		public string Origin { get; set; }
 		public string FinalDestination { get; set; }

@@ -37,7 +37,7 @@
 				Grid.Column="0"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Left"
+				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
 				Text="Name:" />
 			<TextBlock
@@ -45,7 +45,7 @@
 				Grid.Column="0"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Left"
+				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
 				Text="Address:" />
 			<TextBlock
@@ -53,29 +53,26 @@
 				Grid.Column="0"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Left"
+				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
 				Text="Available Credits:" />
 			<TextBox
 				x:Name="TbxNewCustomerName"
 				Grid.Row="0"
 				Grid.Column="1"
-				Margin="4"
-				Padding="4"
+				Margin="0,0,10,0"
 				Text="{Binding Path=NewCustomerName, Mode=TwoWay}" />
 			<TextBox
 				x:Name="TbxNewCustomerAddress"
 				Grid.Row="1"
 				Grid.Column="1"
-				Margin="4"
-				Padding="4"
+				Margin="0,0,10,0"
 				Text="{Binding Path=NewCustomerAddress, Mode=TwoWay}" />
 			<TextBox
 				x:Name="TbxNewCustomerAvailableCredits"
 				Grid.Row="2"
 				Grid.Column="1"
-				Margin="4"
-				Padding="4"
+				Margin="0,0,10,0"
 				Text="{Binding Path=NewCustomerAvailableCredits, Mode=TwoWay}" />
 		</Grid>
 		<Grid Grid.Row="2">

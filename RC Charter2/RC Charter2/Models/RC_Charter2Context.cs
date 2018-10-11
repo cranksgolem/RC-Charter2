@@ -154,7 +154,7 @@ namespace RC_Charter2.Models
 
 				entity.Property(e => e.TotalDistanceFlown).HasColumnType("float").IsRequired(false);
 
-				entity.Property(e => e.TotalWaitingTime).IsRequired(false);
+				entity.Property(e => e.TotalWaitingTime).HasColumnType("float").IsRequired(false);
 
 				entity.Property(e => e.TotalFuelUsage).HasColumnType("float").IsRequired(false);
 
@@ -292,7 +292,7 @@ namespace RC_Charter2.Models
 
 				entity.Property(e => e.DistanceFlown).HasColumnType("float").IsRequired(false);
 
-				entity.Property(e => e.WaitingTime).IsRequired(false);
+				entity.Property(e => e.WaitingTime).HasColumnType("float").IsRequired(false);
 
 				entity.Property(e => e.Order).IsRequired(false);
 

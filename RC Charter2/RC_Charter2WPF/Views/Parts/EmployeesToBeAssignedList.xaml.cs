@@ -24,5 +24,5 @@ namespace RC_Charter2WPF.Views.Parts
         {
             InitializeComponent();
         }
-    }
+	}
 }

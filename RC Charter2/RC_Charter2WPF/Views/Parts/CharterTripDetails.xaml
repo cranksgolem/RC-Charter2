@@ -11,15 +11,17 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-			<RowDefinition />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
-			<TextBlock
-				Margin="4"
-				Padding="4"
-				FontSize="30"
-				Text="Charter Trip Details" />
+			<Border BorderBrush="Black" BorderThickness="0,0,0,1">
+				<TextBlock
+					Margin="4"
+					Padding="4"
+					FontSize="30"
+					Text="Charter Trip Details" />
+			</Border>
 		</Grid>
 		<Grid
 			x:Name="GridCharterTripDetails"
@@ -42,63 +44,63 @@
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Total Charge:" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Remaining Balance:" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Date Last Paid:" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Total Distance Flown:" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Total Waiting Time:" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Total Fuel Usage:" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Origin:" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Final Destination:" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Purpose:" />
@@ -108,54 +110,63 @@
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=TotalCharge}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=RemainingBalance}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=DateLastPaid}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=TotalDistanceFlown}" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=TotalWaitingTime}" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=TotalFuelUsage}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=Origin}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=FinalDestination}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=Purpose}" />
 		</Grid>
 		<Grid Grid.Row="2">

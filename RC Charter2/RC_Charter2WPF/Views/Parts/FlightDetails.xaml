@@ -12,14 +12,17 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
-			<TextBlock
-				Margin="4"
-				Padding="4"
-				FontSize="30"
-				Text="Flight Leg Details" />
+
+			<Border BorderBrush="Black" BorderThickness="0,0,0,1">
+				<TextBlock
+					Margin="4"
+					Padding="4"
+					FontSize="30"
+					Text="Flight Leg Details" />
+			</Border>
 		</Grid>
 		<Grid
 			x:Name="GridFlightLegDetails"
@@ -42,63 +45,63 @@
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Date:" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Time Departure:" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Time Arrival:" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Origin:" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="0"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Destination:" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Distance Flown:" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Waiting Time:" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Fuel Usage:" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="2"
-				Margin="4"
+				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
 				Text="Order:" />
@@ -108,54 +111,63 @@
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=Date}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=TimeDeparture}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=TimeArrival}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=Origin}" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=Destination}" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=DistanceFlown}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=WaitingTime}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=FuelUsage}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
+				HorizontalAlignment="Left"
 				Text="{Binding Path=Order}" />
 		</Grid>
 		<Grid Grid.Row="2" HorizontalAlignment="Left">
@@ -163,7 +175,9 @@
 				x:Name="BtnBack"
 				Margin="4"
 				Padding="4"
-				Content="Back" Click="BtnBack_Click" />
+				Click="BtnBack_Click"
+				Command="{Binding Path=LoadCharterTripsCommand}"
+				Content="Back" />
 		</Grid>
 	</Grid>
 </UserControl>

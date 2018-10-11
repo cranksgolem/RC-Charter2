@@ -40,5 +40,16 @@ namespace RC_Charter2WPF.Views.Parts
 				}
 			}
 		}
+
+		private void BtnAddFlight_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+
+				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddFlightView.Visibility = Visibility.Visible;
+			}
+		}
 	}
 }

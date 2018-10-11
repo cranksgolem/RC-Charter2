@@ -16,7 +16,7 @@ namespace RC_Charter2.Models
 		public string Origin { get; set; }
 		public string Destination { get; set; }
 		public float? DistanceFlown { get; set; }
-		public int? WaitingTime { get; set; }
+		public float? WaitingTime { get; set; }
 		public float? FuelUsage { get; set; }
 		public int? Order { get; set; }
 

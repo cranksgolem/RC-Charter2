@@ -62,6 +62,11 @@ namespace RC_Charter2.UnitsOfWork
 			return _employeeRepository.GetRange(query);
 		}
 
+		public Employee GetEmployee(Expression<Func<Employee, bool>> query)
+		{
+			return _employeeRepository.Get(query);
+		}
+
 		public IEnumerable<Employee> GetAllEmployees()
 		{
 			return GetEmployees(c => true);

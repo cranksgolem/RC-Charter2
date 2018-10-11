@@ -24,5 +24,18 @@ namespace RC_Charter2WPF.Views.Parts
         {
             InitializeComponent();
         }
-    }
+
+		private void TbxAircraftSearch_GotFocus(object sender, RoutedEventArgs e)
+		{
+			TblSearchLabel.Visibility = Visibility.Collapsed;
+		}
+
+		private void TbxAircraftSearch_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (TbxAircraftSearch.Text == "")
+			{
+				TblSearchLabel.Visibility = Visibility.Visible;
+			}
+		}
+	}
 }

@@ -20,8 +20,8 @@
 		</Grid>
 		<Grid Grid.Column="1">
 			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" MinHeight="200" />
 			</Grid.RowDefinitions>
 			<parts:CharterTripList
 				x:Name="CharterTripList"

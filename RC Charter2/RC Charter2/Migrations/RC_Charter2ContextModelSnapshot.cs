@@ -170,7 +170,8 @@ namespace RC_Charter2.Migrations
                     b.Property<double?>("TotalFuelUsage")
                         .HasColumnType("float");
 
-                    b.Property<int?>("TotalWaitingTime");
+                    b.Property<double?>("TotalWaitingTime")
+                        .HasColumnType("float");
 
                     b.HasKey("CharterTripId");
 
@@ -313,7 +314,8 @@ namespace RC_Charter2.Migrations
 
                     b.Property<DateTime?>("TimeDeparture");
 
-                    b.Property<int?>("WaitingTime");
+                    b.Property<double?>("WaitingTime")
+                        .HasColumnType("float");
 
                     b.HasKey("FlightId");
 

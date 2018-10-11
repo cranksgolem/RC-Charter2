@@ -28,11 +28,11 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 			<TextBlock
 				Grid.Row="0"
@@ -103,63 +103,63 @@
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraft}"
+				DataContext="{Binding Path=SelectedAircraft}"
 				Text="{Binding Path=Model}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraft}"
+				DataContext="{Binding Path=SelectedAircraft}"
 				Text="{Binding Path=HourlyWaitingCharge}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraft}"
+				DataContext="{Binding Path=SelectedAircraft}"
 				Text="{Binding Path=ChargePerMile}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraft}"
+				DataContext="{Binding Path=SelectedAircraft}"
 				Text="{Binding Path=NumberOfSeats}" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraftProperties}"
+				DataContext="{Binding Path=SelectedAircraftProperties}"
 				Text="{Binding Path=AircraftType}" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraftProperties}"
+				DataContext="{Binding Path=SelectedAircraftProperties}"
 				Text="{Binding Path=AircraftCategory}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraftProperties}"
+				DataContext="{Binding Path=SelectedAircraftProperties}"
 				Text="{Binding Path=EngineType}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraftProperties}"
+				DataContext="{Binding Path=SelectedAircraftProperties}"
 				Text="{Binding Path=AircraftWeight}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
-				DataContext="{Binding Path=ConfirmedSelectedAircraft}"
+				DataContext="{Binding Path=SelectedAircraft}"
 				Text="{Binding Path=YearManufactured}" />
 		</Grid>
 	</Grid>

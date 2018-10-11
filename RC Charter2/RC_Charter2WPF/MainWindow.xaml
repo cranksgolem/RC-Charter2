@@ -50,6 +50,10 @@
 				x:Name="AddCharterTripView2"
 				DataContext="{StaticResource CustomerViewModel}"
 				Visibility="Collapsed" />
+			<views:AddFlightView
+				x:Name="AddFlightView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="Collapsed" />
 		</Grid>
 	</Grid>
 </Window>
