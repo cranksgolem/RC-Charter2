@@ -211,6 +211,16 @@
 				Click="BtnAdd_Click"
 				Command="{Binding Path=AddNewFlightCommand}"
 				Content="Add" />
+			<Button
+				x:Name="BtnEdit"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				Click="BtnAdd_Click"
+				Command="{Binding Path=EditFlightCommand}"
+				Content="Save Changes"
+				Visibility="Collapsed" />
 		</Grid>
 	</Grid>
 </UserControl>

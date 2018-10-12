@@ -53,6 +53,20 @@ namespace RC_Charter2WPF.Views.Parts
 			{
 				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
 				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Visible;
+				(parentWindow as MainWindow).AddCharterTripView2.BtnConfirmEdit.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddCharterTripView2.BtnComplete.Visibility = Visibility.Visible;
+			}
+		}
+
+		private void BtnEdit_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Visible;
+				(parentWindow as MainWindow).AddCharterTripView2.BtnConfirmEdit.Visibility = Visibility.Visible;
+				(parentWindow as MainWindow).AddCharterTripView2.BtnComplete.Visibility = Visibility.Collapsed;
 			}
 		}
 	}

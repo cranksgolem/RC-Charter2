@@ -56,20 +56,22 @@
 					Click="BtnBack_Click"
 					Content="Back" />
 				<Button
-					Grid.Column="1"
-					Margin="4"
-					Padding="4" x:Name="BtnComplete"
-					HorizontalAlignment="Right"
-					Command="{Binding Path=FinalizeNewCharterTripCommand}"
-					Content="Complete" Click="BtnComplete_Click" />
-				<Button
-					x:Name="BtnConfirmEditCustomer"
+					x:Name="BtnComplete"
 					Grid.Column="1"
 					Margin="4"
 					Padding="4"
 					HorizontalAlignment="Right"
-					Content="Save"
-					Visibility="Collapsed" />
+					Click="BtnComplete_Click"
+					Command="{Binding Path=FinalizeNewCharterTripCommand}"
+					Content="Complete" />
+				<Button
+					x:Name="BtnConfirmEdit"
+					Grid.Column="1"
+					Margin="4"
+					Padding="4" Command="{Binding Path=EditCharterTripCommand}"
+					HorizontalAlignment="Right"
+					Content="Save Changes"
+					Visibility="Collapsed" Click="BtnConfirmEdit_Click" />
 			</Grid>
 		</Grid>
 	</Grid>

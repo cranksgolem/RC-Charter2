@@ -59,6 +59,11 @@ namespace RC_Charter2.UnitsOfWork
 			return _aircraftRepository.GetRange(query);
 		}
 
+		public Aircraft GetSingleAircraft(Expression<Func<Aircraft, bool>> query)
+		{
+			return _aircraftRepository.Get(query);
+		}
+
 		public IEnumerable<Aircraft> GetAllAircraft()
 		{
 			return GetAircraft(c => true);

@@ -139,6 +139,12 @@ namespace RC_Charter2.UnitsOfWork
 			_customerRepository.SaveChanges();
 		}
 
+		public void UpdateFlight(Flight flight)
+		{
+			_flightRepository.Update(flight);
+			_flightRepository.SaveChanges();
+		}
+
 		public IEnumerable<CharterTrip> GetCharterTrips(Expression<Func<CharterTrip, bool>> query)
 		{
 			return _charterTripRepository.GetRange(query);
