@@ -26,7 +26,6 @@
 		<Grid
 			x:Name="GridCharterTripDetails"
 			Grid.Row="1"
-			DataContext="{Binding Path=SelectedCharterTrip}"
 			Visibility="Collapsed">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
@@ -61,49 +60,50 @@
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Date Last Paid:" />
+				Text="Total Distance Flown (Miles):" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="0"
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Total Distance Flown:" />
+				Text="Total Waiting Time (Hours):" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="0"
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Total Waiting Time:" />
+				Text="Total Fuel Usage (Liters):" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="2"
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Total Fuel Usage:" />
+				Text="Origin:" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="2"
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Origin:" />
+				Text="Final Destination:" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="2"
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Final Destination:" />
+				Text="Purpose:" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="2"
 				Margin="4,4,4,10"
 				Padding="4"
 				FontWeight="Bold"
-				Text="Purpose:" />
+				Text="Aircraft:" />
+
 
 			<TextBlock
 				Grid.Row="0"
@@ -111,66 +111,83 @@
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=TotalCharge}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=TotalCharge, StringFormat='c'}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=RemainingBalance}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=RemainingBalance, StringFormat='c'}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=DateLastPaid}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=TotalDistanceFlown, StringFormat={}{0:#,#.00}}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=TotalDistanceFlown}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=TotalWaitingTime, StringFormat={}{0:#,#.00}}" />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=TotalWaitingTime}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=TotalFuelUsage, StringFormat={}{0:#,#.00}}" />
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=TotalFuelUsage}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=Origin}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=Origin}" />
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=FinalDestination}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="3"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=FinalDestination}" />
-			<TextBlock
+				DataContext="{Binding Path=SelectedCharterTrip}"
+				Text="{Binding Path=Purpose}" />
+
+			<StackPanel
 				Grid.Row="3"
 				Grid.Column="3"
 				Margin="4"
-				Padding="4"
-				HorizontalAlignment="Left"
-				Text="{Binding Path=Purpose}" />
+				DataContext="{Binding Path=SelectedCharterTripAircraft}"
+				Orientation="Horizontal">
+				<TextBlock Padding="0,4,0,4" Text=" " />
+				<TextBlock Padding="0,4,0,4" Text="{Binding Path=AircraftNumber}" />
+				<TextBlock Padding="0,4,0,4" Text=" " />
+				<TextBlock Padding="0,4,4,4" Text="{Binding Path=Model}" />
+			</StackPanel>
 		</Grid>
-		<Grid Grid.Row="2">
+		<Grid
+			x:Name="GridButtons"
+			Grid.Row="2"
+			Visibility="Collapsed">
 			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
 				<ColumnDefinition />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
@@ -179,17 +196,22 @@
 				Grid.Column="0"
 				Margin="4"
 				Padding="4"
-				Click="BtnViewFlightLegs_Click"
-				Command="{Binding Path=ViewFlightLegsCommand}"
-				Content="View Flight Legs"
-				Visibility="Collapsed" />
+				Command="{Binding Path=OpenFlightLegsViewCommand}"
+				Content="Manage Flight Legs" />
 			<Button
-				x:Name="BtnViewPaymentHistory"
+				x:Name="BtnViewChargesAndPayments"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				Content="View Payment History"
-				Visibility="Collapsed" />
+				Command="{Binding Path=OpenChargesAndPaymentsViewCommand}"
+				Content="Manage Charges And Payments" />
+			<Button
+				x:Name="BtnViewManageEmployeeHours"
+				Grid.Column="2"
+				Margin="4"
+				Padding="4"
+				Command="{Binding Path=OpenCrewHoursViewCommand}"
+				Content="Manage Crew Hours" />
 		</Grid>
 	</Grid>
 </UserControl>

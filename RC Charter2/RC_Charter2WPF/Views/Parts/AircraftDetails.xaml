@@ -14,13 +14,21 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
-			<TextBlock
-				Margin="4"
-				Padding="4"
-				FontSize="20"
-				Text="Selected Aircraft Details" />
+			<Border
+				Margin="10,0,10,0"
+				BorderBrush="Black"
+				BorderThickness="0,0,0,1">
+				<TextBlock
+					Margin="4"
+					Padding="4"
+					FontSize="20"
+					Text="Selected Aircraft Details: " />
+			</Border>
 		</Grid>
-		<Grid Grid.Row="1">
+		<Grid
+			x:Name="AircraftDetailsGrid"
+			Grid.Row="1"
+			Visibility="Collapsed">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
@@ -28,11 +36,11 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="*" />
-				<RowDefinition Height="*" />
-				<RowDefinition Height="*" />
-				<RowDefinition Height="*" />
-				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<TextBlock
 				Grid.Row="0"

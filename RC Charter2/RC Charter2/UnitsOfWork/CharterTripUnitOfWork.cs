@@ -80,6 +80,12 @@ namespace RC_Charter2.UnitsOfWork
 			_crewAssignmentRepository.SaveChanges();
 		}
 
+		public void UpdateCrewAssignment(CrewAssignment crewAssignment)
+		{
+			_crewAssignmentRepository.Update(crewAssignment);
+			_crewAssignmentRepository.SaveChanges();
+		}
+
 		public void DeleteFlight(Flight flight)
 		{
 			_flightRepository.Remove(flight);
@@ -88,6 +94,11 @@ namespace RC_Charter2.UnitsOfWork
 
 		public void DeleteCharterFlightCharge(CharterFlightCharge charterFlightCharge)
 		{
+			var charterTrip = _charterTripRepository.Get(c => c.CharterTripId == charterFlightCharge.CharterTripId);
+			charterTrip.TotalCharge -= charterFlightCharge.Amount;
+			charterTrip.RemainingBalance -= charterFlightCharge.Amount;
+			_charterTripRepository.Update(charterTrip);
+			_charterTripRepository.SaveChanges();
 			_charterFlightChargeRepository.Remove(charterFlightCharge);
 			_charterFlightChargeRepository.SaveChanges();
 		}
@@ -116,7 +127,17 @@ namespace RC_Charter2.UnitsOfWork
 		public void AddCharterFlightCharge(CharterFlightCharge charterFlightCharge, CharterTrip charterTrip)
 		{
 			charterFlightCharge.CharterTripId = charterTrip.CharterTripId;
+			charterTrip.TotalCharge += charterFlightCharge.Amount;
+			charterTrip.RemainingBalance += charterFlightCharge.Amount;
+			_charterTripRepository.Update(charterTrip);
+			_charterTripRepository.SaveChanges();
 			_charterFlightChargeRepository.Add(charterFlightCharge);
+			_charterFlightChargeRepository.SaveChanges();
+		}
+
+		public void UpdateCharterFlightCharge(CharterFlightCharge charterFlightCharge)
+		{
+			_charterFlightChargeRepository.Update(charterFlightCharge);
 			_charterFlightChargeRepository.SaveChanges();
 		}
 
@@ -151,6 +172,11 @@ namespace RC_Charter2.UnitsOfWork
 
 		}
 
+		public CharterTrip GetCharterTrip(Expression<Func<CharterTrip, bool>> query)
+		{
+			return _charterTripRepository.Get(query);
+		}
+
 		public IEnumerable<CharterTrip> GetAllCharterTrips()
 		{
 			return GetCharterTrips(c => true);
@@ -166,6 +192,11 @@ namespace RC_Charter2.UnitsOfWork
 			return _charterFlightChargeRepository.GetRange(query);
 		}
 
+		public CharterFlightCharge GetCharterFlightCharge(Expression<Func<CharterFlightCharge, bool>> query)
+		{
+			return _charterFlightChargeRepository.Get(query);
+		}
+
 		public IEnumerable<BalanceHistory> GetBalanceHistories(Expression<Func<BalanceHistory, bool>> query)
 		{
 			return _balanceHistoryRepository.GetRange(query);
@@ -173,7 +204,20 @@ namespace RC_Charter2.UnitsOfWork
 
 		public IEnumerable<CrewAssignment> GetCrewAssignments(Expression<Func<CrewAssignment, bool>> query)
 		{
-			return _crewAssignmentRepository.GetRange(query);
+			var crewAssignments = _crewAssignmentRepository.GetRange(query);
+			var employees = new List<Employee>();
+
+			foreach (var crewAssignment in crewAssignments)
+			{
+				employees.Add(_employeeRepository.Get(c => c.EmployeeId == crewAssignment.EmployeeId));
+			}
+
+			return crewAssignments;
+		}
+
+		public CrewAssignment GetCrewAssignment(Expression<Func<CrewAssignment, bool>> query)
+		{
+			return _crewAssignmentRepository.Get(query);
 		}
 
 		public int GetCustomerCount()
@@ -192,6 +236,11 @@ namespace RC_Charter2.UnitsOfWork
 		public IEnumerable<Customer> GetAllCustomers()
 		{
 			return _customerRepository.GetRange(c => true);
+		}
+
+		public Customer GetCustomer(Expression<Func<Customer, bool>> query)
+		{
+			return _customerRepository.Get(query);
 		}
 
 		private bool _isDisposing;

@@ -15,12 +15,17 @@
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
-			<TextBlock
-				x:Name="TblAddCustomerHeader"
-				Margin="4"
-				Padding="4"
-				FontSize="30"
-				Text="Add Customer" />
+			<Border
+				Margin="10,0,10,0"
+				BorderBrush="Black"
+				BorderThickness="0,0,0,1">
+				<TextBlock
+					x:Name="TblAddCustomerHeader"
+					Margin="4"
+					Padding="4"
+					FontSize="30"
+					Text="Add Customer" />
+			</Border>
 		</Grid>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
@@ -85,7 +90,6 @@
 				Grid.Column="0"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Left"
 				Click="BtnCancelAddCustomer_Click"
 				Content="Cancel" />
 			<Button
@@ -93,20 +97,17 @@
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Right"
-				Click="BtnConfirmAddCustomer_Click"
 				Command="{Binding Path=AddCustomerCommand}"
-				Content="Add" />
+				Content="Add"
+				Visibility="{Binding Path=CompleteButtonVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<Button
 				x:Name="BtnConfirmEditCustomer"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Right"
-				Click="BtnConfirmEditCustomer_Click"
 				Command="{Binding Path=EditCustomerCommand}"
 				Content="Save"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=EditButtonVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 		</Grid>
 	</Grid>
 </UserControl>

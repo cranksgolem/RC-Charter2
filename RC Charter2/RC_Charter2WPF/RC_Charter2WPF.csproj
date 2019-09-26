@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BespokeFusion, Version=1.0.1.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialMessageBox.1.0.0.11\lib\BespokeFusion.dll</HintPath>
+    </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -46,6 +49,9 @@
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -60,7 +66,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -100,6 +106,7 @@
     </ApplicationDefinition>
     <Compile Include="Placeholder Classes\EmployeeToBeAssigned.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="Views\AddCharterTripView.xaml.cs">
       <DependentUpon>AddCharterTripView.xaml</DependentUpon>
     </Compile>
@@ -109,8 +116,29 @@
     <Compile Include="Views\AddCustomerView.xaml.cs">
       <DependentUpon>AddCustomerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddEmployeeView.xaml.cs">
+      <DependentUpon>AddEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddFlightChargeView.xaml.cs">
+      <DependentUpon>AddFlightChargeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddFlightView.xaml.cs">
       <DependentUpon>AddFlightView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNewLicensureView.xaml.cs">
+      <DependentUpon>AddNewLicensureView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddNewResultView.xaml.cs">
+      <DependentUpon>AddNewResultView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddPaymentView.xaml.cs">
+      <DependentUpon>AddPaymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChargesAndPaymentsView.xaml.cs">
+      <DependentUpon>ChargesAndPaymentsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CrewHoursView.xaml.cs">
+      <DependentUpon>CrewHoursView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
@@ -127,17 +155,38 @@
     <Compile Include="Views\Parts\AircraftList.xaml.cs">
       <DependentUpon>AircraftList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Parts\ChargeDetails.xaml.cs">
+      <DependentUpon>ChargeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\ChargeList.xaml.cs">
+      <DependentUpon>ChargeList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Parts\CharterTripDetails.xaml.cs">
       <DependentUpon>CharterTripDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\CharterTripList.xaml.cs">
       <DependentUpon>CharterTripList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Parts\CustomerDetails.xaml.cs">
+      <DependentUpon>CustomerDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Parts\CustomerList.xaml.cs">
       <DependentUpon>CustomerList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Parts\EmployeeDetails.xaml.cs">
+      <DependentUpon>EmployeeDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\EmployeeLicensesAndTests.xaml.cs">
+      <DependentUpon>EmployeeLicensesAndTests.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Parts\EmployeeList.xaml.cs">
       <DependentUpon>EmployeeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\EmployeeList2.xaml.cs">
+      <DependentUpon>EmployeeList2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\EmployeePersonalDetails.xaml.cs">
+      <DependentUpon>EmployeePersonalDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\EmployeesToBeAssignedList.xaml.cs">
       <DependentUpon>EmployeesToBeAssignedList.xaml</DependentUpon>
@@ -149,8 +198,12 @@
       <DependentUpon>FlightLegsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\ListBoxItemScroll.cs" />
+    <Compile Include="Views\Parts\ListBoxScrollOnNewItem.cs" />
     <Compile Include="Views\Parts\NavBar.xaml.cs">
       <DependentUpon>NavBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Parts\PaymentList.xaml.cs">
+      <DependentUpon>PaymentList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Parts\RequiredCrewList.xaml.cs">
       <DependentUpon>RequiredCrewList.xaml</DependentUpon>
@@ -179,7 +232,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddFlightChargeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddFlightView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddNewLicensureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddNewResultView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddPaymentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChargesAndPaymentsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CrewHoursView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +284,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Parts\ChargeDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\ChargeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Parts\CharterTripDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,11 +300,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Parts\CustomerDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Parts\CustomerList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Parts\EmployeeDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\EmployeeLicensesAndTests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Parts\EmployeeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\EmployeeList2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\EmployeePersonalDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +341,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Parts\NavBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Parts\PaymentList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

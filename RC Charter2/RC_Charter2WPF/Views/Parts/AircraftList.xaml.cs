@@ -37,5 +37,23 @@ namespace RC_Charter2WPF.Views.Parts
 				TblSearchLabel.Visibility = Visibility.Visible;
 			}
 		}
+
+		private void LbxAircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				if (LbxAircraft.SelectedItem != null)
+				{
+					(parentWindow as MainWindow).AddCharterTripView.AircraftDetails.AircraftDetailsGrid.Visibility =
+						Visibility.Visible;
+				}
+				else
+				{
+					(parentWindow as MainWindow).AddCharterTripView.AircraftDetails.AircraftDetailsGrid.Visibility =
+						Visibility.Collapsed;
+				}
+			}
+		}
 	}
 }

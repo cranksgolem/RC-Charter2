@@ -13,72 +13,142 @@ namespace RC_Charter2.UnitsOfWork
 	public class PaymentUnitOfWork : IDisposable
 	{
 		private RC_Charter2Context _context;
-		private IRepository<PaymentMode> PaymentModeRepository { get; set; }
-		private IRepository<Check> CheckRepository { get; set; }
-		private IRepository<Cash> CashRepository { get; set; }
-		private IRepository<Customer> CustomerRepository { get; set; }
-		private IRepository<CharterTrip> CharterTripRepository { get; set; }
-		private IRepository<BalanceHistory> BalanceHistoryRepository { get; set; }
+		private IRepository<PaymentMode> _paymentModeRepository { get; set; }
+		private IRepository<Check> _checkRepository { get; set; }
+		private IRepository<Cash> _cashRepository { get; set; }
+		private IRepository<Customer> _customerRepository { get; set; }
+		private IRepository<CharterTrip> _charterTripRepository { get; set; }
+		private IRepository<BalanceHistory> _balanceHistoryRepository { get; set; }
 
 		public PaymentUnitOfWork()
 		{
 			_context = new RC_Charter2Context();
-			PaymentModeRepository = new EfRepository<PaymentMode>(_context);
-			CheckRepository = new EfRepository<Check>(_context);
-			CashRepository = new EfRepository<Cash>(_context);
-			CustomerRepository = new EfRepository<Customer>(_context);
-			CharterTripRepository = new EfRepository<CharterTrip>(_context);
-			BalanceHistoryRepository = new EfRepository<BalanceHistory>(_context);
+			_paymentModeRepository = new EfRepository<PaymentMode>(_context);
+			_checkRepository = new EfRepository<Check>(_context);
+			_cashRepository = new EfRepository<Cash>(_context);
+			_customerRepository = new EfRepository<Customer>(_context);
+			_charterTripRepository = new EfRepository<CharterTrip>(_context);
+			_balanceHistoryRepository = new EfRepository<BalanceHistory>(_context);
 		}
 
-		public void AddPaymentMode(PaymentMode paymentMode, Customer customer, CharterTrip charterTrip, Cash cash)
+		public void AddPaymentMode(PaymentMode paymentMode)
 		{
-			paymentMode.CustomerId = customer.CustomerId;
-			paymentMode.CharterTripId = charterTrip.CharterTripId;
-			paymentMode.CashId = cash.CashId;
-			cash.PaymentModeId = paymentMode.PaymentModeId;
-			CashRepository.Update(cash);
-			CashRepository.SaveChanges();
-			PaymentModeRepository.Add(paymentMode);
-			PaymentModeRepository.SaveChanges();
-		}
-
-		public void AddPaymentMode(PaymentMode paymentMode, Customer customer, CharterTrip charterTrip, Check check)
-		{
-			paymentMode.CustomerId = customer.CustomerId;
-			paymentMode.CharterTripId = charterTrip.CharterTripId;
-			paymentMode.CheckId = check.CheckId;
-			check.PaymentModeId = paymentMode.PaymentModeId;
-			CheckRepository.Update(check);
-			CashRepository.SaveChanges();
-			PaymentModeRepository.Add(paymentMode);
-			PaymentModeRepository.SaveChanges();
+			_paymentModeRepository.Add(paymentMode);
+			_paymentModeRepository.SaveChanges();
 		}
 
 		public void UpdatePaymentMode(PaymentMode paymentMode)
 		{
-			PaymentModeRepository.Update(paymentMode);
-			PaymentModeRepository.SaveChanges();
+			_paymentModeRepository.Update(paymentMode);
+			_paymentModeRepository.SaveChanges();
 		}
 
-		public async Task<IEnumerable<PaymentMode>> GetPaymentModes(Expression<Func<PaymentMode, bool>> query)
+		public void DeletePaymentMode(PaymentMode paymentMode)
 		{
-			return await PaymentModeRepository.Query()
-				.Where(query)
-				.ToListAsync()
-				.ConfigureAwait(false);
+			_paymentModeRepository.Remove(paymentMode);
+			_paymentModeRepository.SaveChanges();
 		}
 
-		public async Task<IEnumerable<PaymentMode>> GetAllPaymentModes()
+		public void DeleteCheck(Check check)
 		{
-			return await GetPaymentModes(c => true).ConfigureAwait(false);
+			_checkRepository.Remove(check);
+			_checkRepository.SaveChanges();
+		}
+
+		public void DeleteCash(Cash cash)
+		{
+			_cashRepository.Remove(cash);
+			_cashRepository.SaveChanges();
+		}
+
+		public IEnumerable<Cash> GetCash(Expression<Func<Cash, bool>> query)
+		{
+			return _cashRepository.GetRange(query);
+		}
+
+		public Cash GetSingleCash(Expression<Func<Cash, bool>> query)
+		{
+			return _cashRepository.Get(query);
+		}
+
+		public void AddCash(Cash cash)
+		{
+			_cashRepository.Add(cash);
+			_cashRepository.SaveChanges();
+		}
+
+		public void UpdateCash(Cash cash)
+		{
+			_cashRepository.Update(cash);
+			_cashRepository.SaveChanges();
+		}
+
+		public void UpdateCheck(Check check)
+		{
+			_checkRepository.Update(check);
+			_checkRepository.SaveChanges();
+		}
+
+		public void AddPaymentModeIdToCash(Cash cash, PaymentMode paymentMode)
+		{
+			cash.PaymentModeId = paymentMode.PaymentModeId;
+			_cashRepository.Update(cash);
+			_cashRepository.SaveChanges();
+		}
+
+		public void AddCheck(Check check)
+		{
+			_checkRepository.Add(check);
+			_checkRepository.SaveChanges();
+		}
+
+		public void AddPaymentModeIdToCheck(Check check, PaymentMode paymentMode)
+		{
+			check.PaymentModeId = paymentMode.PaymentModeId;
+			_checkRepository.Update(check);
+			_checkRepository.SaveChanges();
+		}
+
+		public IEnumerable<Check> GetChecks(Expression<Func<Check, bool>> query)
+		{
+			return _checkRepository.GetRange(query);
+		}
+
+		public Check GetCheck(Expression<Func<Check, bool>> query)
+		{
+			return _checkRepository.Get(query);
+		}
+
+		public IEnumerable<PaymentMode> GetPaymentModes(Expression<Func<PaymentMode, bool>> query)
+		{
+			var paymentModes = _paymentModeRepository.GetRange(query);
+			var cash = new List<Cash>();
+			var checks = new List<Check>();
+
+			foreach (var paymentMode in paymentModes)
+			{
+				if (paymentMode.ModeOfPayment == "Cash")
+				{
+					cash.Add(GetSingleCash(c => c.PaymentModeId == paymentMode.PaymentModeId));
+				}
+				else if (paymentMode.ModeOfPayment == "Check")
+				{
+					checks.Add(GetCheck(c => c.PaymentModeId == paymentMode.PaymentModeId));
+				}
+			}
+			return paymentModes;
+		}
+
+		public IEnumerable<PaymentMode> GetAllPaymentModes()
+		{
+			return GetPaymentModes(c => true);
 		}
 
 		public void AddBalanceHistory(BalanceHistory balanceHistory, CharterTrip charterTrip)
 		{
 			balanceHistory.CharterTripId = charterTrip.CharterTripId;
-			BalanceHistoryRepository.Add(balanceHistory);
-			BalanceHistoryRepository.SaveChanges();
+			_balanceHistoryRepository.Add(balanceHistory);
+			_balanceHistoryRepository.SaveChanges();
 		}
 
 		private bool _isDisposing;

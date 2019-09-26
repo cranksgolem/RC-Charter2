@@ -12,15 +12,20 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
-			<RowDefinition />
+			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
-			<TextBlock
-				Margin="4"
-				Padding="4"
-				FontSize="30"
-				Text="Add Flight Leg" />
+			<Border
+				Margin="10,0,10,0"
+				BorderBrush="Black"
+				BorderThickness="0,0,0,1">
+				<TextBlock
+					Margin="4"
+					Padding="4"
+					FontSize="30"
+					Text="Add Flight Leg" />
+			</Border>
 		</Grid>
 		<Grid Grid.Row="1">
 			<Grid.ColumnDefinitions>
@@ -28,6 +33,12 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
@@ -45,7 +56,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Date: " />
+				Text="Customer Unused Credits: " />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="0"
@@ -53,7 +64,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Time Departure: " />
+				Text="Aircraft Charge Per Mile: " />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="0"
@@ -61,7 +72,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Time Arrival: " />
+				Text="Aircraft Hourly Waiting Charge: " />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="0"
@@ -69,7 +80,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Origin: " />
+				Text="Date: " />
 			<TextBlock
 				Grid.Row="4"
 				Grid.Column="0"
@@ -77,7 +88,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Destination: " />
+				Text="Time Departure: " />
 			<TextBlock
 				Grid.Row="5"
 				Grid.Column="0"
@@ -85,7 +96,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Distance Flown: " />
+				Text="Time Arrival: " />
 			<TextBlock
 				Grid.Row="6"
 				Grid.Column="0"
@@ -93,7 +104,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Waiting Time: " />
+				Text="Origin: " />
 			<TextBlock
 				Grid.Row="7"
 				Grid.Column="0"
@@ -101,7 +112,7 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
-				Text="Fuel Usage: " />
+				Text="Destination: " />
 			<TextBlock
 				Grid.Row="8"
 				Grid.Column="0"
@@ -109,10 +120,78 @@
 				Padding="4"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Center"
+				Text="Distance Flown (Miles): " />
+			<TextBlock
+				Grid.Row="9"
+				Grid.Column="0"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Text="Distance Flown Charge: " />
+			<TextBlock
+				Grid.Row="10"
+				Grid.Column="0"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Text="Waiting Time (Hours): " />
+			<TextBlock
+				Grid.Row="11"
+				Grid.Column="0"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Text="Waiting Time Charge: " />
+			<TextBlock
+				Grid.Row="12"
+				Grid.Column="0"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Text="Total Charge: " />
+			<TextBlock
+				Grid.Row="13"
+				Grid.Column="0"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Text="Fuel Usage (Liters): " />
+			<TextBlock
+				Grid.Row="14"
+				Grid.Column="0"
+				Margin="4"
+				Padding="4"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
 				Text="Order: " />
 
-			<DatePicker
+			<TextBlock
 				Grid.Row="0"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				Text="{Binding Path=SelectedCustomerUnusedCredits}" />
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				DataContext="{Binding Path=SelectedCharterTripAircraft}"
+				Text="{Binding Path=ChargePerMile, StringFormat='c'}" />
+			<TextBlock
+				Grid.Row="2"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				DataContext="{Binding Path=SelectedCharterTripAircraft}"
+				Text="{Binding Path=HourlyWaitingCharge, StringFormat='c'}" />
+			<DatePicker
+				Grid.Row="3"
 				Grid.Column="1"
 				Width="200"
 				MinWidth="100"
@@ -121,9 +200,8 @@
 				HorizontalAlignment="Left"
 				VerticalAlignment="Center"
 				SelectedDate="{Binding Path=NewFlightDate, Mode=TwoWay}" />
-
 			<xctk:TimePicker
-				Grid.Row="1"
+				Grid.Row="4"
 				Grid.Column="1"
 				Width="200"
 				MinWidth="100"
@@ -133,7 +211,7 @@
 				VerticalAlignment="Center"
 				Value="{Binding Path=NewFlightTimeDeparture}" />
 			<xctk:TimePicker
-				Grid.Row="2"
+				Grid.Row="5"
 				Grid.Column="1"
 				Width="200"
 				MinWidth="100"
@@ -144,7 +222,7 @@
 				Value="{Binding Path=NewFlightTimeArrival}" />
 
 			<ComboBox
-				Grid.Row="3"
+				Grid.Row="6"
 				Grid.Column="1"
 				Width="200"
 				MinWidth="100"
@@ -154,7 +232,7 @@
 				ItemsSource="{Binding Path=StatesList}"
 				SelectedItem="{Binding Path=NewFlightOrigin, Mode=TwoWay}" />
 			<ComboBox
-				Grid.Row="4"
+				Grid.Row="7"
 				Grid.Column="1"
 				Width="200"
 				MinWidth="100"
@@ -163,27 +241,42 @@
 				IsTextSearchEnabled="True"
 				ItemsSource="{Binding Path=StatesList}"
 				SelectedItem="{Binding Path=NewFlightDestination}" />
-
 			<TextBox
-				Grid.Row="5"
+				Grid.Row="8"
 				Grid.Column="1"
 				Margin="0,0,10,0"
-				Text="{Binding Path=NewFlightDistanceFlown}" />
-
+				Text="{Binding Path=NewFlightDistanceFlown, UpdateSourceTrigger=PropertyChanged}" />
+			<TextBlock
+				Grid.Row="9"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				Text="{Binding Path=NewFlightDistanceFlownCharge, StringFormat='c', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 			<TextBox
-				Grid.Row="6"
+				Grid.Row="10"
 				Grid.Column="1"
 				Margin="0,0,10,0"
-				Text="{Binding Path=NewFlightWaitingTime}" />
-
+				Text="{Binding Path=NewFlightWaitingTime, UpdateSourceTrigger=PropertyChanged}" />
+			<TextBlock
+				Grid.Row="11"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				Text="{Binding Path=NewFlightWaitingTimeCharge, StringFormat='c', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+			<TextBlock
+				Grid.Row="12"
+				Grid.Column="1"
+				Margin="4"
+				Padding="4"
+				Text="{Binding Path=NewFlightTotalCharge, StringFormat='c', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 			<TextBox
-				Grid.Row="7"
+				Grid.Row="13"
 				Grid.Column="1"
 				Margin="0,0,10,0"
 				Text="{Binding Path=NewFlightFuelUsage}" />
 
 			<TextBlock
-				Grid.Row="8"
+				Grid.Row="14"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
@@ -199,28 +292,24 @@
 				Grid.Column="0"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Left"
-				Click="BtnCancel_Click"
+				Command="{Binding Path=OpenFlightLegsViewCommand}"
 				Content="Cancel" />
 			<Button
 				x:Name="BtnAdd"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Right"
-				Click="BtnAdd_Click"
 				Command="{Binding Path=AddNewFlightCommand}"
-				Content="Add" />
+				Content="Add"
+				Visibility="{Binding Path=CompleteButtonVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<Button
 				x:Name="BtnEdit"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
-				HorizontalAlignment="Right"
-				Click="BtnAdd_Click"
 				Command="{Binding Path=EditFlightCommand}"
 				Content="Save Changes"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=EditButtonVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 		</Grid>
 	</Grid>
 </UserControl>

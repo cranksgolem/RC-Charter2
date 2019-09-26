@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\School\5th Year\DBMS\FINAL PROJECT GITHUB\RC-Charter2\RC Charter2\RC_Charter2WPF\App.xaml
-19196043173
+3477156522
 
-26341932509
-81-758606079
-MainWindow.xaml;Views\AddCharterTripView.xaml;Views\AddCharterTripView2.xaml;Views\AddCustomerView.xaml;Views\AddFlightView.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\FlightLegsView.xaml;Views\Parts\AircraftDetails.xaml;Views\Parts\AircraftList.xaml;Views\Parts\CharterTripDetails.xaml;Views\Parts\CharterTripList.xaml;Views\Parts\CustomerList.xaml;Views\Parts\EmployeeList.xaml;Views\Parts\EmployeesToBeAssignedList.xaml;Views\Parts\FlightDetails.xaml;Views\Parts\FlightLegsList.xaml;Views\Parts\NavBar.xaml;Views\Parts\RequiredCrewList.xaml;
+43225730269
+83182502291
+MainWindow.xaml;Views\AddCharterTripView.xaml;Views\AddCharterTripView2.xaml;Views\AddCustomerView.xaml;Views\AddEmployeeView.xaml;Views\AddFlightChargeView.xaml;Views\AddFlightView.xaml;Views\AddNewLicensureView.xaml;Views\AddNewResultView.xaml;Views\AddPaymentView.xaml;Views\ChargesAndPaymentsView.xaml;Views\CrewHoursView.xaml;Views\CustomerView.xaml;Views\EmployeeView.xaml;Views\FlightLegsView.xaml;Views\Parts\AircraftDetails.xaml;Views\Parts\AircraftList.xaml;Views\Parts\ChargeDetails.xaml;Views\Parts\ChargeList.xaml;Views\Parts\CharterTripDetails.xaml;Views\Parts\CharterTripList.xaml;Views\Parts\CustomerDetails.xaml;Views\Parts\CustomerList.xaml;Views\Parts\EmployeeDetails.xaml;Views\Parts\EmployeeLicensesAndTests.xaml;Views\Parts\EmployeeList.xaml;Views\Parts\EmployeeList2.xaml;Views\Parts\EmployeePersonalDetails.xaml;Views\Parts\EmployeesToBeAssignedList.xaml;Views\Parts\FlightDetails.xaml;Views\Parts\FlightLegsList.xaml;Views\Parts\NavBar.xaml;Views\Parts\PaymentList.xaml;Views\Parts\RequiredCrewList.xaml;
 
 False
 

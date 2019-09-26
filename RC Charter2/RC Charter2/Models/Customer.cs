@@ -8,6 +8,11 @@ namespace RC_Charter2.Models
 {
 	public class Customer
 	{
+		public Customer()
+		{
+			UsedCredits = 0;
+		}
+
 		public int? CustomerId { get; set; }
 		public string Name { get; set; }
 		public string Address { get; set; }

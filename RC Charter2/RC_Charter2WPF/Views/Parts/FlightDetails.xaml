@@ -112,21 +112,21 @@
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=Date}" />
+				Text="{Binding Path=Date, StringFormat={}{0:MM/dd/yyyy}}" />
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=TimeDeparture}" />
+				Text="{Binding Path=TimeDeparture, StringFormat='t'}" />
 			<TextBlock
 				Grid.Row="2"
 				Grid.Column="1"
 				Margin="4"
 				Padding="4"
 				HorizontalAlignment="Left"
-				Text="{Binding Path=TimeArrival}" />
+				Text="{Binding Path=TimeArrival, StringFormat='t'}" />
 			<TextBlock
 				Grid.Row="3"
 				Grid.Column="1"

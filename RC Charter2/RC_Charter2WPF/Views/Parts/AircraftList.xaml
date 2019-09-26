@@ -45,7 +45,7 @@
 			Margin="4,0,4,4"
 			Padding="4"
 			ItemsSource="{Binding Path=AircraftList}"
-			SelectedItem="{Binding Path=SelectedAircraft, Mode=TwoWay}">
+			SelectedItem="{Binding Path=SelectedAircraft, Mode=TwoWay}" SelectionChanged="LbxAircraft_SelectionChanged">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">

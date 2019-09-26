@@ -9,9 +9,9 @@
 	xmlns:parts="clr-namespace:RC_Charter2WPF.Views.Parts"
 	xmlns:viewModels="clr-namespace:RC_Charter2WPF.ViewModels"
 	xmlns:views="clr-namespace:RC_Charter2WPF.Views"
-	Title="MainWindow"
-	Width="800"
-	Height="450"
+	Title="RC Charter2"
+	Width="1200"
+	Height="650"
 	Background="{DynamicResource MaterialDesignPaper}"
 	FontFamily="{DynamicResource MaterialDesignFont}"
 	TextElement.FontSize="13"
@@ -22,6 +22,7 @@
 	mc:Ignorable="d">
 	<Window.Resources>
 		<viewModels:CustomerViewModel x:Key="CustomerViewModel" />
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -29,31 +30,65 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
-			<parts:NavBar />
+			<parts:NavBar x:Name="NavBar" DataContext="{StaticResource CustomerViewModel}" />
 		</Grid>
 		<Grid Grid.Row="1">
-			<views:CustomerView x:Name="CustomerView" DataContext="{StaticResource CustomerViewModel}" />
-			<views:EmployeeView x:Name="EmployeeView" Visibility="Collapsed" />
+			<views:CustomerView
+				x:Name="CustomerView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=CustomerViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:EmployeeView
+				x:Name="EmployeeView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=EmployeeViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<views:AddCustomerView
 				x:Name="AddCustomerView"
 				DataContext="{StaticResource CustomerViewModel}"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=AddCustomerViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<views:FlightLegsView
 				x:Name="FlightLegsView"
 				DataContext="{StaticResource CustomerViewModel}"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=FlightLegsViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<views:AddCharterTripView
 				x:Name="AddCharterTripView"
 				DataContext="{StaticResource CustomerViewModel}"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=AddCharterTripViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<views:AddCharterTripView2
 				x:Name="AddCharterTripView2"
 				DataContext="{StaticResource CustomerViewModel}"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=AddCharterTripView2Visibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			<views:AddFlightView
 				x:Name="AddFlightView"
 				DataContext="{StaticResource CustomerViewModel}"
-				Visibility="Collapsed" />
+				Visibility="{Binding Path=AddFlightViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:ChargesAndPaymentsView
+				x:Name="ChargesAndPaymentsView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=ChargesAndPaymentsViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:AddFlightChargeView
+				x:Name="AddFlightChargeView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=AddChargeViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:AddPaymentView
+				x:Name="AddPaymentView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=AddPaymentViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:CrewHoursView
+				x:Name="CrewHoursView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=CrewHoursViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:AddEmployeeView
+				x:Name="AddEmployeeView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=AddEmployeeViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:AddNewLicensureView
+				x:Name="AddNewLicensureView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=AddLicensureViewVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
+			<views:AddNewResultView
+				x:Name="AddNewResultView"
+				DataContext="{StaticResource CustomerViewModel}"
+				Visibility="{Binding Path=AddResultViewVisibiility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 		</Grid>
 	</Grid>
 </Window>

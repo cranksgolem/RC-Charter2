@@ -40,8 +40,7 @@
 					Padding="4"
 					Background="Transparent"
 					BorderBrush="Transparent"
-					Click="BtnAddFlight_Click"
-					Command="{Binding Path=InitializeNewFlightAttributesCommand}">
+					Command="{Binding Path=OpenAddFlightViewCommand}">
 					<Viewbox Width="20" Height="20">
 						<Canvas Width="24" Height="24">
 							<Path Data="M9,11.5A2.5,2.5 0 0,0 11.5,9A2.5,2.5 0 0,0 9,6.5A2.5,2.5 0 0,0 6.5,9A2.5,2.5 0 0,0 9,11.5M9,2C12.86,2 16,5.13 16,9C16,14.25 9,22 9,22C9,22 2,14.25 2,9A7,7 0 0,1 9,2M15,17H18V14H20V17H23V19H20V22H18V19H15V17Z" Fill="Black" />
@@ -60,8 +59,7 @@
 					Padding="4"
 					Background="Transparent"
 					BorderBrush="Transparent"
-					Click="BtnEditFlight_Click"
-					Command="{Binding Path=InitializeFlightEditCommand}">
+					Command="{Binding Path=OpenEditFlightViewCommand}">
 					<Viewbox Width="20" Height="20">
 						<Canvas Width="24" Height="24">
 							<Path Data="M5,3C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19H5V5H12V3H5M17.78,4C17.61,4 17.43,4.07 17.3,4.2L16.08,5.41L18.58,7.91L19.8,6.7C20.06,6.44 20.06,6 19.8,5.75L18.25,4.2C18.12,4.07 17.95,4 17.78,4M15.37,6.12L8,13.5V16H10.5L17.87,8.62L15.37,6.12Z" Fill="Black" />
@@ -99,10 +97,13 @@
 				SelectionChanged="LbFlightLegs_SelectionChanged">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<TextBlock
-							Margin="4"
-							Padding="4"
-							Text="{Binding Path=FlightId}" />
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Path=Order}" />
+							<TextBlock Text="     From: " />
+							<TextBlock Text="{Binding Path=Origin}" />
+							<TextBlock Text="     To: " />
+							<TextBlock Text="{Binding Path=Destination}" />
+						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>

@@ -19,31 +19,42 @@
 				<ColumnDefinition />
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
-			<TextBlock
-				Grid.Column="0"
-				Margin="4"
-				Padding="4"
-				FontSize="20"
-				Text="Selected Crew Members:" />
-			<Button
+			<Border
+				Margin="10,0,0,0"
+				BorderBrush="Black"
+				BorderThickness="0,0,0,1">
+				<TextBlock
+					Grid.Column="0"
+					Margin="4"
+					Padding="4,4,4,0"
+					FontSize="20"
+					Text="Selected Crew Members:" />
+			</Border>
+			<Border
 				Grid.Column="1"
-				Margin="4"
-				Padding="4"
-				Background="Transparent"
-				BorderBrush="Transparent"
-				Command="{Binding Path=RemoveSelectedEmployeeFromEmployeesToBeAssignedCommand}">
-				<Viewbox Width="20" Height="20">
-					<Canvas Width="24" Height="24">
-						<Path Data="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" Fill="Black" />
-					</Canvas>
-				</Viewbox>
-			</Button>
+				Margin="0,0,10,0"
+				BorderBrush="Black"
+				BorderThickness="0,0,0,1">
+				<Button
+					Margin="4"
+					Padding="4,4,4,0"
+					Background="Transparent"
+					BorderBrush="Transparent"
+					Command="{Binding Path=RemoveSelectedEmployeeFromEmployeesToBeAssignedCommand}">
+					<Viewbox Width="20" Height="20">
+						<Canvas Width="24" Height="24">
+							<Path Data="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" Fill="Black" />
+						</Canvas>
+					</Viewbox>
+				</Button>
+			</Border>
 		</Grid>
 		<Grid Grid.Row="1">
 			<ListBox
 				x:Name="LbxEmployeesToBeAssigned"
 				Margin="4"
 				Padding="4"
+				local:ListBoxBehavior.ScrollOnNewItem="true"
 				ItemsSource="{Binding Path=NewCharterTripEmployeesToBeAssigned}"
 				SelectedItem="{Binding Path=SelectedEmployeeToBeAssigned}">
 				<ListBox.ItemTemplate>

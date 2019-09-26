@@ -311,6 +311,8 @@ namespace RC_Charter2.Models
 				entity.Property(e => e.LicenseType).IsRequired();
 
 				entity.Property(e => e.Description).IsRequired(false);
+
+				entity.Property(e => e.HourlyCharge).HasColumnType("money").IsRequired(false);
 			});
 
 			modelBuilder.Entity<Licensure>(entity =>

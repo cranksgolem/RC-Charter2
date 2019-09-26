@@ -25,29 +25,51 @@ namespace RC_Charter2WPF.Views.Parts
             InitializeComponent();
         }
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			Window parentWindow = Application.Current.MainWindow;
-			if (parentWindow.GetType() == typeof(MainWindow))
-			{
-				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Visible;
-				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Collapsed;
-			}
-		}
-
 		private void BtnCustomerView_Click(object sender, RoutedEventArgs e)
 		{
 			Window parentWindow = Application.Current.MainWindow;
 			if (parentWindow.GetType() == typeof(MainWindow))
 			{
-				(parentWindow as MainWindow).EmployeeView.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
-				(parentWindow as MainWindow).AddCustomerView.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).AddCharterTripView.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).FlightLegsView.Visibility = Visibility.Collapsed;
+				(parentWindow as MainWindow).NavBar.BtnCustomerView.Background = Brushes.LightGray;
+				(parentWindow as MainWindow).NavBar.BtnEmployeeView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnAircraftView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnCharterTripView.Background = Brushes.Transparent;
+			}
+		}
+
+		private void BtnEmployeeView_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).NavBar.BtnCustomerView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnEmployeeView.Background = Brushes.LightGray;
+				(parentWindow as MainWindow).NavBar.BtnAircraftView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnCharterTripView.Background = Brushes.Transparent;
+			}
+		}
+
+		private void BtnAircraftView_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).NavBar.BtnCustomerView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnEmployeeView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnAircraftView.Background = Brushes.LightGray;
+				(parentWindow as MainWindow).NavBar.BtnCharterTripView.Background = Brushes.Transparent;
+			}
+		}
+
+		private void BtnCharterTripView_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				(parentWindow as MainWindow).NavBar.BtnCustomerView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnEmployeeView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnAircraftView.Background = Brushes.Transparent;
+				(parentWindow as MainWindow).NavBar.BtnCharterTripView.Background = Brushes.LightGray;
 			}
 		}
 	}

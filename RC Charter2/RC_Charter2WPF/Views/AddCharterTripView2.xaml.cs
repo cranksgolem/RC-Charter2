@@ -23,7 +23,7 @@ namespace RC_Charter2WPF.Views
         public AddCharterTripView2()
         {
             InitializeComponent();
-        }
+		}
 
 		private void BtnBack_Click(object sender, RoutedEventArgs e)
 		{
@@ -37,22 +37,22 @@ namespace RC_Charter2WPF.Views
 
 		private void BtnComplete_Click(object sender, RoutedEventArgs e)
 		{
-			Window parentWindow = Application.Current.MainWindow;
-			if (parentWindow.GetType() == typeof(MainWindow))
-			{
-				(parentWindow as MainWindow).AddCharterTripView2.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
-			}
+			//Window parentWindow = Application.Current.MainWindow;
+			//if (parentWindow.GetType() == typeof(MainWindow))
+			//{
+			//	(parentWindow as MainWindow).AddCharterTripView2.Visibility = Visibility.Collapsed;
+			//	(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
+			//}
 		}
 
 		private void BtnConfirmEdit_Click(object sender, RoutedEventArgs e)
 		{
-			Window parentWindow = Application.Current.MainWindow;
-			if (parentWindow.GetType() == typeof(MainWindow))
-			{
-				(parentWindow as MainWindow).AddCharterTripView2.Visibility = Visibility.Collapsed;
-				(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
-			}
+			//Window parentWindow = Application.Current.MainWindow;
+			//if (parentWindow.GetType() == typeof(MainWindow))
+			//{
+			//	(parentWindow as MainWindow).AddCharterTripView2.Visibility = Visibility.Collapsed;
+			//	(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Visible;
+			//}
 		}
 	}
 }

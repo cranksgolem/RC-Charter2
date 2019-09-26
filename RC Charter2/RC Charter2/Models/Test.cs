@@ -18,5 +18,10 @@ namespace RC_Charter2.Models
 		public string TestFrequency { get; set; }
 
 		public ICollection<Result> Results { get; set; }
+
+		public override string ToString()
+		{
+			return TestDescription;
+		}
 	}
 }

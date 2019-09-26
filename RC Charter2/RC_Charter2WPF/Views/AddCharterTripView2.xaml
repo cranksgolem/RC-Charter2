@@ -14,35 +14,63 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="5" />
 				<RowDefinition Height="*" />
+				<RowDefinition Height="5" />
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<Grid Grid.Row="0">
-				<StackPanel Orientation="Horizontal">
-					<TextBlock
-						Margin="4,4,0,4"
-						Padding="4,4,0,4"
-						FontSize="30"
-						Text="Add Charter Trip for " />
-					<TextBlock
-						Margin="0,4,4,4"
-						Padding="0,4,4,4"
-						DataContext="{Binding Path=SelectedCustomer}"
-						FontSize="30"
-						Text="{Binding Path=Name}" />
-				</StackPanel>
+				<Border
+					Margin="10,0,10,0"
+					BorderBrush="Black"
+					BorderThickness="0,0,0,1">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock
+							Margin="4,4,0,4"
+							Padding="4,4,0,4"
+							FontSize="30"
+							Text="Add Charter Trip for " />
+						<TextBlock
+							Margin="0,4,4,4"
+							Padding="0,4,4,4"
+							DataContext="{Binding Path=SelectedCustomer}"
+							FontSize="30"
+							Text="{Binding Path=Name}" />
+					</StackPanel>
+				</Border>
 			</Grid>
 			<Grid Grid.Row="1">
 				<parts:RequiredCrewList />
 			</Grid>
-			<Grid Grid.Row="2">
+			<GridSplitter
+				Grid.Row="2"
+				Height="5"
+				HorizontalAlignment="Stretch"
+				Background="LightSlateGray" />
+			<Grid Grid.Row="3">
 				<parts:EmployeesToBeAssignedList />
 			</Grid>
-			<Grid Grid.Row="3">
-				<parts:EmployeeList />
+			<GridSplitter
+				Grid.Row="4"
+				Height="5"
+				HorizontalAlignment="Stretch"
+				Background="LightSlateGray" />
+			<Grid Grid.Row="5">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition Width="5" />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<parts:EmployeeList Grid.Column="0" />
+				<GridSplitter
+					Grid.Column="1"
+					Width="5"
+					HorizontalAlignment="Stretch"
+					Background="LightSlateGray" />
+				<parts:EmployeeDetails Grid.Column="2" />
 			</Grid>
-			<Grid Grid.Row="4">
+			<Grid Grid.Row="6">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition />
 					<ColumnDefinition />
@@ -52,26 +80,24 @@
 					Grid.Column="0"
 					Margin="4"
 					Padding="4"
-					HorizontalAlignment="Left"
-					Click="BtnBack_Click"
+					Command="{Binding Path=OpenAddCharterTripView1From2Command}"
 					Content="Back" />
 				<Button
 					x:Name="BtnComplete"
 					Grid.Column="1"
 					Margin="4"
 					Padding="4"
-					HorizontalAlignment="Right"
-					Click="BtnComplete_Click"
 					Command="{Binding Path=FinalizeNewCharterTripCommand}"
-					Content="Complete" />
+					Content="Complete"
+					Visibility="{Binding Path=CompleteButtonVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 				<Button
 					x:Name="BtnConfirmEdit"
 					Grid.Column="1"
 					Margin="4"
-					Padding="4" Command="{Binding Path=EditCharterTripCommand}"
-					HorizontalAlignment="Right"
+					Padding="4"
+					Command="{Binding Path=EditCharterTripCommand}"
 					Content="Save Changes"
-					Visibility="Collapsed" Click="BtnConfirmEdit_Click" />
+					Visibility="{Binding Path=EditButtonVisibility, Converter={StaticResource BooleanToVisibilityConverter}, Mode=TwoWay}" />
 			</Grid>
 		</Grid>
 	</Grid>

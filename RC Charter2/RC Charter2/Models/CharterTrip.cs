@@ -15,6 +15,8 @@ namespace RC_Charter2.Models
 			CharterFlightCharges = new HashSet<CharterFlightCharge>();
 			BalanceHistories = new HashSet<BalanceHistory>();
 			PaymentModes = new HashSet<PaymentMode>();
+			TotalCharge = 0;
+			RemainingBalance = 0;
 		}
 
 		public int? CharterTripId { get; set; }

@@ -10,7 +10,7 @@ namespace RC_Charter2.Models
 	{
 		public int? CheckId { get; set; }
 		public int? PaymentModeId { get; set; }
-		public int? CheckNumber { get; set; }
+		public string CheckNumber { get; set; }
 		public DateTime? CheckDate { get; set; }
 		public Decimal? Amount { get; set; }
 

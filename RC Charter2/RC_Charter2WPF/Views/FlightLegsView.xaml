@@ -12,12 +12,18 @@
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition />
-			<RowDefinition Height="Auto" MinHeight="200" />
+			<RowDefinition Height="5" />
+			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid Grid.Row="0">
 			<parts:FlightLegsList />
 		</Grid>
-		<Grid x:Name="FlightLegDetailsGrid" Grid.Row="1">
+		<GridSplitter
+			Grid.Row="1"
+			Height="5"
+			HorizontalAlignment="Stretch"
+			Background="SlateGray" />
+		<Grid x:Name="FlightLegDetailsGrid" Grid.Row="2">
 			<parts:FlightDetails x:Name="GridFlightLegDetails" />
 		</Grid>
 	</Grid>

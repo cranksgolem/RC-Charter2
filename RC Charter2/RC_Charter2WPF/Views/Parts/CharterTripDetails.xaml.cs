@@ -37,5 +37,18 @@ namespace RC_Charter2WPF.Views.Parts
 				}
 			}
 		}
+
+		private void BtnViewChargesAndPayments_Click(object sender, RoutedEventArgs e)
+		{
+			Window parentWindow = Application.Current.MainWindow;
+			if (parentWindow.GetType() == typeof(MainWindow))
+			{
+				if ((parentWindow as MainWindow).CustomerView.CharterTripList.LbCharterTrips.SelectedItem != null)
+				{
+					(parentWindow as MainWindow).CustomerView.Visibility = Visibility.Collapsed;
+					(parentWindow as MainWindow).ChargesAndPaymentsView.Visibility = Visibility.Visible;
+				}
+			}
+		}
 	}
 }

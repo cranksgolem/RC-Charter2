@@ -77,7 +77,7 @@ namespace RC_Charter2.Repositories
 
 		public T Get(Expression<Func<T, bool>> expression)
 		{
-			return _context.Set<T>().First(expression);
+			return _context.Set<T>().FirstOrDefault(expression);
 		}
 
 		public IList<T> GetRange(Expression<Func<T, bool>> expression)

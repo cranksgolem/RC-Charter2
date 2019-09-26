@@ -194,7 +194,7 @@ namespace RC_Charter2.Migrations
                     b.Property<DateTime?>("CheckDate")
                         .HasColumnType("date");
 
-                    b.Property<int?>("CheckNumber");
+                    b.Property<string>("CheckNumber");
 
                     b.Property<int?>("PaymentModeId");
 
@@ -330,6 +330,9 @@ namespace RC_Charter2.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
+
+                    b.Property<decimal?>("HourlyCharge")
+                        .HasColumnType("money");
 
                     b.HasKey("LicenseType");
 

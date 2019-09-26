@@ -41,10 +41,16 @@ namespace RC_Charter2.UnitsOfWork
 			_employeeRepository.SaveChanges();
 		}
 
+		public void DeleteEmployee(Employee employee)
+		{
+			_employeeRepository.Remove(employee);
+			_employeeRepository.SaveChanges();
+		}
+
 		public void AddLicensure(Licensure licensure, Employee employee, License license)
 		{
 			licensure.EmployeeId = employee.EmployeeId;
-			licensure.LicenseType = licensure.LicenseType;
+			licensure.LicenseType = license.LicenseType;
 			_licensureRepository.Add(licensure);
 			_licensureRepository.SaveChanges();
 		}
@@ -79,7 +85,27 @@ namespace RC_Charter2.UnitsOfWork
 
 		public IEnumerable<Licensure> GetLicensures(Expression<Func<Licensure, bool>> query)
 		{
-			return _licensureRepository.GetRange(query);
+			var licensures = _licensureRepository.GetRange(query);
+			var licenses = new List<License>();
+
+			foreach (var licensure in licensures)
+			{
+				licenses.Add(GetLicense(c => c.LicenseType == licensure.LicenseType));
+			}
+
+			return licensures;
+		}
+
+		public void UpdateLicensure(Licensure licensure)
+		{
+			_licensureRepository.Update(licensure);
+			_licensureRepository.SaveChanges();
+		}
+
+		public void DeleteLicensure(Licensure licensure)
+		{
+			_licensureRepository.Remove(licensure);
+			_licensureRepository.SaveChanges();
 		}
 
 		public License GetLicense(Expression<Func<License, bool>> query)
@@ -87,9 +113,43 @@ namespace RC_Charter2.UnitsOfWork
 			return _licenseRepository.Get(query);
 		}
 
+		public IEnumerable<License> GetAllLicenses()
+		{
+			return _licenseRepository.GetRange(c => true);
+		}
+		public Test GetTest(Expression<Func<Test, bool>> query)
+		{
+			return _testRepository.Get(query);
+		}
+
+		public IEnumerable<Test> GetAllTests()
+		{
+			return _testRepository.GetRange(c => true);
+		}
+
 		public IEnumerable<Result> GetResults(Expression<Func<Result, bool>> query)
 		{
-			return _resultRepository.GetRange(query);
+			var results = _resultRepository.GetRange(query);
+			var tests = new List<Test>();
+
+			foreach (var result in results)
+			{
+				tests.Add(GetTest(c => c.TestCode == result.TestCode));
+			}
+
+			return results;
+		}
+
+		public void UpdateResult(Result result)
+		{
+			_resultRepository.Update(result);
+			_resultRepository.SaveChanges();
+		}
+
+		public void DeleteResult(Result result)
+		{
+			_resultRepository.Remove(result);
+			_resultRepository.SaveChanges();
 		}
 
 		public IEnumerable<Employee> GetEmployeesByPage(int itemPerPage, int page)

@@ -20,7 +20,9 @@
 			Grid.Column="0"
 			Margin="4"
 			Padding="4"
+			Background="LightGray"
 			Click="BtnCustomerView_Click"
+			Command="{Binding Path=OpenCustomerViewCommand}"
 			Content="Customer"
 			Style="{DynamicResource MaterialDesignFlatButton}" />
 		<Button
@@ -28,20 +30,25 @@
 			Grid.Column="1"
 			Margin="4"
 			Padding="4"
-			Click="Button_Click"
+			Click="BtnEmployeeView_Click"
+			Command="{Binding Path=OpenEmployeeViewCommand}"
 			Content="Employee"
 			Style="{DynamicResource MaterialDesignFlatButton}" />
 		<Button
+			x:Name="BtnAircraftView"
 			Grid.Column="2"
 			Margin="4"
 			Padding="4"
+			Click="BtnAircraftView_Click"
 			Content="Aircraft"
 			Style="{DynamicResource MaterialDesignFlatButton}" />
 		<Button
+			x:Name="BtnCharterTripView"
 			Grid.Column="3"
 			Margin="4"
 			Padding="4"
-			Content="Charter Trip"
+			Click="BtnCharterTripView_Click"
+			Content="Tests and Licenses"
 			Style="{DynamicResource MaterialDesignFlatButton}" />
 	</Grid>
 </UserControl>

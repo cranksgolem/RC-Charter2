@@ -48,11 +48,13 @@ namespace RC_Charter2WPF.Views.Parts
 				{
 					(parentWindow as MainWindow).CustomerView.CharterTripList.Visibility = Visibility.Visible;
 					(parentWindow as MainWindow).CustomerView.CharterTripDetails.Visibility = Visibility.Visible;
+					(parentWindow as MainWindow).CustomerView.CustomerDetails.Visibility = Visibility.Visible;
 				}
 				else
 				{
 					(parentWindow as MainWindow).CustomerView.CharterTripList.Visibility = Visibility.Collapsed;
 					(parentWindow as MainWindow).CustomerView.CharterTripDetails.Visibility = Visibility.Collapsed;
+					(parentWindow as MainWindow).CustomerView.CustomerDetails.Visibility = Visibility.Collapsed;
 				}
 			}
 		}

@@ -47,8 +47,7 @@
 				Padding="4"
 				Background="{x:Null}"
 				BorderBrush="{x:Null}"
-				Click="BtnAddCustomer_Click"
-				Command="{Binding Path=AddCustomerInitCommand}">
+				Command="{Binding Path=OpenAddCustomerViewCommand}">
 				<Viewbox Width="30" Height="30">
 					<Canvas Width="24" Height="24">
 						<Path Data="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M6,10V7H4V10H1V12H4V15H6V12H9V10M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12Z" Fill="Black" />
@@ -63,8 +62,7 @@
 				Padding="4"
 				Background="{x:Null}"
 				BorderBrush="{x:Null}"
-				Click="BtnEditCustomer_Click"
-				Command="{Binding Path=EditCustomerInitCommand}">
+				Command="{Binding Path=OpenEditCustomerViewCommand}">
 				<Viewbox Width="30" Height="30">
 					<Canvas Width="24" Height="24">
 						<Path Data="M21.7,13.35L20.7,14.35L18.65,12.3L19.65,11.3C19.86,11.09 20.21,11.09 20.42,11.3L21.7,12.58C21.91,12.79 21.91,13.14 21.7,13.35M12,18.94L18.06,12.88L20.11,14.93L14.06,21H12V18.94M12,14C7.58,14 4,15.79 4,18V20H10V18.11L14,14.11C13.34,14.03 12.67,14 12,14M12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4Z" Fill="Black" />
